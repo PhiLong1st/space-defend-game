@@ -64,14 +64,14 @@ public class ObjectPool
       var obj = pool.Dequeue();
       if (obj != null)
       {
-        Destroy(obj);
+        Object.Destroy(obj);
       }
     }
   }
 
   private GameObject CreateNewObject()
   {
-    var obj = Instantiate(prefab, parent);
+    var obj = Object.Instantiate(prefab, parent);
     obj.SetActive(false);
     return obj;
   }
