@@ -7,7 +7,7 @@ public class SliderBarPresenter : MonoBehaviour
   [SerializeField] SliderBar sliderBar;
   [SerializeField] Slider slider;
 
-  private void Start()
+  private void Awake()
   {
     if (sliderBar == null)
     {
@@ -16,9 +16,14 @@ public class SliderBarPresenter : MonoBehaviour
     }
 
     sliderBar.OnValueChanged += OnValueChanged;
+  }
+
+  private void Start()
+  {
     UpdateView();
 
-    Debug.Log("SliderBarPresenter initialized.");
+    sliderBar.Restore();
+    Debug.Log($"{sliderBar.Name} initialized with CurrentValue: {sliderBar.CurrentValue}, MaxValue: {sliderBar.MaxValue}");
   }
 
   private void OnDestroy()
@@ -34,33 +39,30 @@ public class SliderBarPresenter : MonoBehaviour
 
   public void Decrement(int amount)
   {
-    sliderBar?.Decrement(amount);
+    sliderBar.Decrement(amount);
   }
 
   public void Increment(int amount)
   {
-    sliderBar?.Increment(amount);
-  }
-
-  public void Reset()
-  {
-    sliderBar?.Restore();
+    sliderBar.Increment(amount);
   }
 
   public void UpdateView()
   {
-    if (sliderBar == null)
-      return;
-
     if (slider != null && sliderBar.MaxValue != 0)
     {
       slider.value = (float)sliderBar.CurrentValue / (float)sliderBar.MaxValue;
     }
   }
 
+  public void SetMaxValue(int maxValue)
+  {
+    sliderBar.SetMaxValue(maxValue);
+  }
+
   public void OnValueChanged()
   {
     UpdateView();
-    Debug.Log($"SliderBar value changed: {sliderBar.CurrentValue}");
+    Debug.Log($"{sliderBar.Name} value changed: {sliderBar.CurrentValue}");
   }
 }

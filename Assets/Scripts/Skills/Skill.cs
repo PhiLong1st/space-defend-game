@@ -8,10 +8,11 @@ public class Skill : MonoBehaviour
   public string DisplayName => _config.DisplayName;
   public KeyCode ActivationKey => _config.ActivationKey;
   public float SkillCooldown => _config.SkillCooldown;
-  public float SkillEnergy => _config.SkillEnergy;
-  public float CooldownRemaining { get; private set; }
+  public int SkillEnergy => _config.SkillEnergy;
+  public float CooldownRemaining => _cooldownRemaining;
   public SkillState CurrentState => _state;
 
+  private float _cooldownRemaining;
   private SkillState _state;
 
   public void SetSkillState(SkillState newState)
@@ -22,7 +23,7 @@ public class Skill : MonoBehaviour
 
   public void SetSkillCooldown(float amount)
   {
-    CooldownRemaining = Mathf.Max(0, amount);
-    Debug.Log($"Skill {_config.DisplayName} cooldown set to: {CooldownRemaining}");
+    _cooldownRemaining = amount;
+    // Debug.Log($"Skill {_config.DisplayName} cooldown set to: {_cooldownRemaining}");
   }
 }

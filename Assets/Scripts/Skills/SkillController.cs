@@ -1,13 +1,20 @@
 using UnityEngine;
 public class SkillController : MonoBehaviour
 {
+  [SerializeField] private ShipController _ship;
   [SerializeField] private Skill _skill;
   [SerializeField] private SkillView _skillView;
-  // [SerializeField] private Ship _ship;
+
+  private void Awake()
+  {
+    var initialCooldown = 0;
+    _skill.SetSkillCooldown(initialCooldown);
+  }
 
   private void Start()
   {
-    Initialize();
+    var initialState = GetSkillState();
+    _skill.SetSkillState(initialState);
   }
 
   private void FixedUpdate()
@@ -21,9 +28,10 @@ public class SkillController : MonoBehaviour
 
   private void Update()
   {
-    if (Input.GetKeyDown(_skill.ActivationKey))
+    if (Input.GetKeyDown(_skill.ActivationKey) && GetSkillState() == SkillState.Available)
     {
       ActivateSkill();
+      _ship.UseStamina(_skill.SkillEnergy);
     }
 
     UpdateSkillState();
@@ -43,27 +51,29 @@ public class SkillController : MonoBehaviour
     }
   }
 
-  public void Initialize()
-  {
-    var initialCooldown = 0;
-    _skill.SetSkillCooldown(initialCooldown);
-
-    var initialState = GetSkillState();
-    _skill.SetSkillState(initialState);
-  }
-
   public SkillState GetSkillState()
   {
     if (IsSkillOnCooldown())
     {
       return SkillState.CoolingDown;
     }
+
+    if (IsSkillOutOfEnergy())
+    {
+      return SkillState.OutOfEnergy;
+    }
+
     return SkillState.Available;
   }
 
   public bool IsSkillOnCooldown()
   {
     return _skill.CooldownRemaining > 0;
+  }
+
+  public bool IsSkillOutOfEnergy()
+  {
+    return _ship.CurrentStamina < _skill.SkillEnergy;
   }
 
   public void UpdateSkillState()

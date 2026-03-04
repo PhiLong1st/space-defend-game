@@ -44,5 +44,8 @@ TagManager:
   - name: Skill
     uniqueID: 782390081
     locked: 0
+  - name: Tank
+    uniqueID: 116603157
+    locked: 0
   m_RenderingLayers:
   - Default

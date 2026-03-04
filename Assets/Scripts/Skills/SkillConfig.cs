@@ -16,7 +16,7 @@ public class SkillConfig : ScriptableObject
   public float SkillCooldown = 5f;
 
   [Tooltip("Energy required for skill activation")]
-  public float SkillEnergy = 5f;
+  public int SkillEnergy = 5;
 
   [Tooltip("Activation key for skill (e.g., KeyCode.Space)")]
   public KeyCode ActivationKey = KeyCode.Space;

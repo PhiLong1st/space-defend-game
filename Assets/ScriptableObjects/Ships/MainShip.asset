@@ -9,16 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 905595807ac64b84ab52f1488604eee4, type: 3}
-  m_Name: Ship_1
+  m_Script: {fileID: 11500000, guid: 505e0b9a2ad82a44f8d942ffc7655b4e, type: 3}
+  m_Name: MainShip
   m_EditorClassIdentifier: Assembly-CSharp::ShipConfig
-  ShipId: Ship_1
-  DisplayName: Ship_1
-  PlacementCost: 50
-  Damage: 10
-  FireRate: 1
-  Range: 5
-  SkillCooldown: 5
+  ShipId: MainShip
+  DisplayName: MainShip
   MaxHealth: 100
-  DefaultTargetingStrategy: 0
-  UpgradeCost: 75
+  MaxStamina: 100

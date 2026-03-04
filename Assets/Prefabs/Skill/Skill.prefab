@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5835892294692162771}
-  - component: {fileID: 5743551259118874518}
-  - component: {fileID: 4596050484157794030}
-  - component: {fileID: 1955765723144106493}
+  - component: {fileID: 5242984362338860}
+  - component: {fileID: 6091890308130416929}
+  - component: {fileID: 1713109580052333384}
   m_Layer: 5
   m_Name: Skill
   m_TagString: Untagged
@@ -43,7 +43,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5743551259118874518
+--- !u!114 &5242984362338860
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,12 +52,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 536363671375550335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bc9547f755bb2845b5927b5fd38cc1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 13b1ddd8a19770a42b1734effd596c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Skill
+  _config: {fileID: 0}
+--- !u!114 &6091890308130416929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536363671375550335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c475d70420edfd4681610dd8018de05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillController
-  _skill: {fileID: 1955765723144106493}
-  _skillView: {fileID: 4596050484157794030}
---- !u!114 &4596050484157794030
+  _ship: {fileID: 0}
+  _skill: {fileID: 5242984362338860}
+  _skillView: {fileID: 1713109580052333384}
+--- !u!114 &1713109580052333384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,27 +80,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 536363671375550335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa925fac638d3e449957f7441c2605a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 22cfc957b14569d4aaa8bce0e8c684d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillView
   _icon: {fileID: 2439842818439083378}
   _backgroundIcon: {fileID: 3968652926487145113}
-  _cooldownOverlay: {fileID: 3780401459435196441}
-  _skill: {fileID: 1955765723144106493}
+  _overlayImage: {fileID: 3780401459435196441}
+  _skill: {fileID: 5242984362338860}
   _cooldownText: {fileID: 2996327187169256554}
---- !u!114 &1955765723144106493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 536363671375550335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8243d9177136f3a4f9f613def93acf18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Skill
-  _config: {fileID: 11400000, guid: 023393cf3f3d70c49a4e45f2a9b336b5, type: 2}
 --- !u!1 &1729629497171494363
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,12 +100,12 @@ GameObject:
   - component: {fileID: 5891841536576904791}
   - component: {fileID: 3780401459435196441}
   m_Layer: 5
-  m_Name: Cooldown Overlay
+  m_Name: Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8971593970737811879
 RectTransform:
   m_ObjectHideFlags: 0
@@ -145,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.47843137}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -261,7 +262,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -386,7 +387,7 @@ GameObject:
   - component: {fileID: 8682294106337212095}
   - component: {fileID: 2996327187169256554}
   m_Layer: 5
-  m_Name: Cooldown
+  m_Name: Cooldown Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
