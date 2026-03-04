@@ -15,4 +15,12 @@ public class ShipConfig : ScriptableObject
 
   [Tooltip("Stamina points of the ship")]
   public int MaxStamina = 100;
+
+  [Tooltip("Movement speed of the ship")]
+  public float MovementSpeed = 5f;
+
+  [Header("Combat")]
+  [Tooltip("Damage dealt by the ship's primary weapon")]
+  public int damage = 10;
+  public GameObject normalProjectilePrefab;
 }

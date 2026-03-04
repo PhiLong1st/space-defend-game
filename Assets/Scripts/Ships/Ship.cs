@@ -12,6 +12,8 @@ public class Ship : MonoBehaviour
 
   public int MaxHealth => _config.MaxHealth;
   public int MaxStamina => _config.MaxStamina;
+  public float MovementSpeed => _config.MovementSpeed;
+  public GameObject NormalProjectilePrefab => _config.normalProjectilePrefab;
 
   public void SetCurrentHealth(int amount)
   {

@@ -16,3 +16,6 @@ MonoBehaviour:
   DisplayName: MainShip
   MaxHealth: 100
   MaxStamina: 100
+  MovementSpeed: 5
+  damage: 10
+  normalProjectilePrefab: {fileID: 2642745078164795378, guid: c45e0b8aab4b2b94baf187bfc740a4cf, type: 3}
