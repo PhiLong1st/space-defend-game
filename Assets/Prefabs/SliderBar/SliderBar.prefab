@@ -121,7 +121,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8095377634041521736}
   - component: {fileID: 565857580814006175}
-  - component: {fileID: 5180136683292546404}
   - component: {fileID: 397487907410096220}
   m_Layer: 5
   m_Name: SliderBar
@@ -202,21 +201,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5180136683292546404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7082002387418734162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e781c9953703afc488e29c4490e799d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SliderBar
-  _currentValue: 0
-  _maxValue: 0
-  _name: SliderBar
 --- !u!114 &397487907410096220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,8 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa278f9a927a9b147ad9ac4b09c81b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SliderBarPresenter
-  sliderBar: {fileID: 5180136683292546404}
-  slider: {fileID: 565857580814006175}
 --- !u!1 &7882441432367438260
 GameObject:
   m_ObjectHideFlags: 0

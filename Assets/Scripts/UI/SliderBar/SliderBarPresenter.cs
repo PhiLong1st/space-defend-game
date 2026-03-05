@@ -1,68 +1,22 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Slider))]
+[RequireComponent(typeof(AbstractSliderBarView))]
 public class SliderBarPresenter : MonoBehaviour
 {
-  [SerializeField] SliderBar sliderBar;
-  [SerializeField] Slider slider;
+  private Slider _slider;
+  private AbstractSliderBarView _sliderBarView;
 
   private void Awake()
   {
-    if (sliderBar == null)
-    {
-      Debug.LogError("SliderBar is not assigned in the inspector.");
-      return;
-    }
-
-    sliderBar.OnValueChanged += OnValueChanged;
+    _slider = GetComponent<Slider>();
+    _sliderBarView = GetComponent<AbstractSliderBarView>();
   }
 
-  private void Start()
+  public void HandleOnValueChanged(int currentValue, int maxValue)
   {
-    UpdateView();
-
-    sliderBar.Restore();
-    Debug.Log($"{sliderBar.Name} initialized with CurrentValue: {sliderBar.CurrentValue}, MaxValue: {sliderBar.MaxValue}");
-  }
-
-  private void OnDestroy()
-  {
-    if (sliderBar == null)
-    {
-      Debug.LogError("SliderBar is not assigned in the inspector.");
-      return;
-    }
-
-    sliderBar.OnValueChanged -= OnValueChanged;
-  }
-
-  public void Decrement(int amount)
-  {
-    sliderBar.Decrement(amount);
-  }
-
-  public void Increment(int amount)
-  {
-    sliderBar.Increment(amount);
-  }
-
-  public void UpdateView()
-  {
-    if (slider != null && sliderBar.MaxValue != 0)
-    {
-      slider.value = (float)sliderBar.CurrentValue / (float)sliderBar.MaxValue;
-    }
-  }
-
-  public void SetMaxValue(int maxValue)
-  {
-    sliderBar.SetMaxValue(maxValue);
-  }
-
-  public void OnValueChanged()
-  {
-    UpdateView();
-    Debug.Log($"{sliderBar.Name} value changed: {sliderBar.CurrentValue}");
+    _slider.value = (float)currentValue / (float)maxValue;
+    _sliderBarView.UpdateView(currentValue, maxValue);
   }
 }

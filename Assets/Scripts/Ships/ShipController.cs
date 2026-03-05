@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ShipController : MonoBehaviour
@@ -12,17 +13,26 @@ public class ShipController : MonoBehaviour
   public int CurrentHealth => _ship.CurrentHealth;
   public int CurrentStamina => _ship.CurrentStamina;
 
+  public Action<int, int> OnHealthChange;
+
+  public Action<int, int> OnStaminaChange;
+
   private Transform _transform;
 
   private void Awake()
   {
+    _transform = GetComponent<Transform>();
+    OnHealthChange += _healthBar.HandleOnValueChanged;
+    OnStaminaChange += _staminaBar.HandleOnValueChanged;
+  }
+
+  private void Start()
+  {
     _ship.SetCurrentHealth(_ship.MaxHealth);
     _ship.SetCurrentStamina(_ship.MaxStamina);
 
-    _healthBar.SetMaxValue(_ship.MaxHealth);
-    _staminaBar.SetMaxValue(_ship.MaxStamina);
-
-    _transform = GetComponent<Transform>();
+    OnHealthChange?.Invoke(_ship.CurrentHealth, _ship.MaxHealth);
+    OnStaminaChange?.Invoke(_ship.CurrentStamina, _ship.MaxStamina);
   }
 
   private void Update()
@@ -30,6 +40,12 @@ public class ShipController : MonoBehaviour
     HandleMovement();
     HandleRotateGun();
     HandleShoot();
+  }
+
+  private void OnDestroy()
+  {
+    OnHealthChange -= _healthBar.HandleOnValueChanged;
+    OnStaminaChange -= _staminaBar.HandleOnValueChanged;
   }
 
   public void HandleMovement()
@@ -86,28 +102,27 @@ public class ShipController : MonoBehaviour
   {
     int newHealth = Mathf.Max(_ship.CurrentHealth - amount, 0);
     _ship.SetCurrentHealth(newHealth);
-    _healthBar.Decrement(amount);
+    OnHealthChange?.Invoke(_ship.CurrentHealth, _ship.MaxHealth);
   }
 
   public void UseStamina(int amount)
   {
     int newStamina = Mathf.Max(_ship.CurrentStamina - amount, 0);
     _ship.SetCurrentStamina(newStamina);
-    _staminaBar.Decrement(amount);
+    OnStaminaChange?.Invoke(_ship.CurrentStamina, _ship.MaxStamina);
   }
 
   public void RestoreHealth(int amount)
   {
     int newHealth = Mathf.Min(_ship.CurrentHealth + amount, _ship.MaxHealth);
     _ship.SetCurrentHealth(newHealth);
-    _healthBar.Increment(amount);
+    OnHealthChange?.Invoke(_ship.CurrentHealth, _ship.MaxHealth);
   }
 
   public void RestoreStamina(int amount)
   {
     int newStamina = Mathf.Min(_ship.CurrentStamina + amount, _ship.MaxStamina);
     _ship.SetCurrentStamina(newStamina);
-    _staminaBar.Increment(amount);
+    OnStaminaChange?.Invoke(_ship.CurrentStamina, _ship.MaxStamina);
   }
 }
-
