@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Background
+  - Spaceship
   - 
   - 
   - 
@@ -46,6 +46,15 @@ TagManager:
     locked: 0
   - name: Tank
     uniqueID: 116603157
+    locked: 0
+  - name: Background
+    uniqueID: 4094601735
+    locked: 0
+  - name: Spaceship
+    uniqueID: 3084890293
+    locked: 0
+  - name: UI
+    uniqueID: 2268114827
     locked: 0
   m_RenderingLayers:
   - Default

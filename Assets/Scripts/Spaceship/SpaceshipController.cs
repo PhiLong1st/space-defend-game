@@ -3,16 +3,23 @@ using UnityEngine;
 public class SpaceshipController : MonoBehaviour
 {
   public static SpaceshipController Instance { get; private set; }
-
-  [SerializeField] float _speed = 10f;
-  [SerializeField] float _boost = 1f;
+  [SerializeField] private Spaceship _spaceship;
 
   private SpaceshipView _spaceshipView;
 
   private Transform _transform;
 
-  public float CurrentSpeed => _speed * _boost;
-  public float Boost => _boost;
+  #region Stat System
+  public float CurrentMovementSpeed => _spaceship.CurrentMovementSpeed * _spaceship.CurrentBoostSpeed;
+  public float CurrentBoostSpeed => _spaceship.CurrentBoostSpeed;
+  public float CurrentShield => _spaceship.CurrentShield;
+  public float CurrentHealth => _spaceship.CurrentHealth;
+  public float CurrentStamina => _spaceship.CurrentStamina;
+  public float MaxHealth => _spaceship.MaxHealth;
+  public float MaxStamina => _spaceship.MaxStamina;
+  public float MaxShield => _spaceship.MaxShield;
+  #endregion
+
 
   private void Awake()
   {
@@ -29,10 +36,6 @@ public class SpaceshipController : MonoBehaviour
     }
   }
 
-  void Start()
-  {
-  }
-
   void Update()
   {
     HandleMovement();
@@ -42,35 +45,35 @@ public class SpaceshipController : MonoBehaviour
   {
     if (Input.GetKey(KeyCode.W))
     {
-      Vector2 newPosition = _transform.position + _transform.up * CurrentSpeed * Time.fixedDeltaTime;
+      Vector2 newPosition = _transform.position + _transform.up * CurrentMovementSpeed * Time.fixedDeltaTime;
       _transform.position = newPosition;
     }
 
     if (Input.GetKey(KeyCode.S))
     {
-      Vector2 newPosition = _transform.position - _transform.up * CurrentSpeed * Time.fixedDeltaTime;
+      Vector2 newPosition = _transform.position - _transform.up * CurrentMovementSpeed * Time.fixedDeltaTime;
       _transform.position = newPosition;
     }
 
     if (Input.GetKey(KeyCode.D))
     {
-      Vector2 newPosition = _transform.position + _transform.right * CurrentSpeed * Time.fixedDeltaTime;
+      Vector2 newPosition = _transform.position + _transform.right * CurrentMovementSpeed * Time.fixedDeltaTime;
       _transform.position = newPosition;
     }
 
     if (Input.GetKey(KeyCode.A))
     {
-      Vector2 newPosition = _transform.position - _transform.right * CurrentSpeed * Time.fixedDeltaTime;
+      Vector2 newPosition = _transform.position - _transform.right * CurrentMovementSpeed * Time.fixedDeltaTime;
       _transform.position = newPosition;
     }
 
     // Boosting
-    if (Input.GetKey(KeyCode.E))
+    if (Input.GetKeyDown(KeyCode.E))
     {
       EnterBoost();
     }
 
-    if (Input.GetKey(KeyCode.R))
+    if (Input.GetKeyDown(KeyCode.R))
     {
       StopBoost();
     }
@@ -78,13 +81,13 @@ public class SpaceshipController : MonoBehaviour
 
   public void EnterBoost()
   {
-    _boost = 2f;
+    _spaceship.ApplyBoostMultiplier(2);
     _spaceshipView.EnterBoost();
   }
 
   public void StopBoost()
   {
-    _boost = 1f;
+    _spaceship.ApplyBoostMultiplier(0.5f);
     _spaceshipView.ExitBoost();
   }
 }
