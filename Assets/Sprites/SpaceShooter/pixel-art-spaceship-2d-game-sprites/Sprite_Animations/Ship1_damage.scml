@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11" pixel_mode="1">
+    <folder id="0" name="Ship1">
+        <file id="0" name="Ship1/ship_asset1.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="Ship1/parts/level1/part_0004_cracks.png" width="39" height="13" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="Ship1/ship_damaged1.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="Ship1/ship_asset2.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="Ship1/ship_asset3.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="Ship1/ship_asset4.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="6" name="Ship1/ship_asset5.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="7" name="Ship1/ship_asset6.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="8" name="Ship1/ship_asset7.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="9" name="Ship1/ship_damaged2.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="10" name="Ship1/ship_damaged3.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="11" name="Ship1/ship_damaged4.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="12" name="Ship1/ship_damaged5.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="13" name="Ship1/ship_damaged6.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="14" name="Ship1/ship_damaged7.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="15" name="Ship1/parts/level7/part_0009_cracks.png" width="38" height="23" pivot_x="0" pivot_y="1"/>
+        <file id="16" name="Ship1/parts/level6/part_0007_cracks.png" width="36" height="23" pivot_x="0" pivot_y="1"/>
+        <file id="17" name="Ship1/parts/level5/part_0008_cracks.png" width="33" height="13" pivot_x="0" pivot_y="1"/>
+        <file id="18" name="Ship1/parts/level4/part_0007_cracks.png" width="36" height="19" pivot_x="0" pivot_y="1"/>
+        <file id="19" name="Ship1/parts/level3/part_0006_cracks.png" width="35" height="19" pivot_x="0" pivot_y="1"/>
+        <file id="20" name="Ship1/parts/level2/part_0005_cracks.png" width="48" height="21" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="Ship1_lvl7_damage" length="600" interval="100" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="156">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="2" time="300">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
+                </key>
+                <key id="3" time="444">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
+                </key>
+                <key id="4" time="599">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="3" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ship_asset7">
+                <key id="0" spin="0">
+                    <object folder="0" file="8" x="-64" y="68" angle="0"/>
+                </key>
+                <key id="1" time="599" spin="0">
+                    <object folder="0" file="8" x="-64" y="68" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ship_damaged7">
+                <key id="0" spin="0">
+                    <object folder="0" file="14" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="1" time="300" spin="0">
+                    <object folder="0" file="14" x="-64" y="68" angle="0" a="0.5"/>
+                </key>
+                <key id="2" time="444" spin="0">
+                    <object folder="0" file="14" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="3" time="599" spin="0">
+                    <object folder="0" file="14" x="-64" y="68" angle="0" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="part_0009_cracks">
+                <key id="0" spin="0">
+                    <object folder="0" file="15" x="5" y="21" angle="0" a="0"/>
+                </key>
+                <key id="1" time="156" spin="0">
+                    <object folder="0" file="15" x="5" y="21" angle="0"/>
+                </key>
+                <key id="2" time="599" spin="0">
+                    <object folder="0" file="15" x="5" y="21" angle="0" a="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="Ship1_lvl6_damage" length="600" interval="100" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="145">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="2" time="300">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
+                </key>
+                <key id="3" time="442">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
+                </key>
+                <key id="4" time="599">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="3" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ship_asset6">
+                <key id="0" spin="0">
+                    <object folder="0" file="7" x="-64" y="68" angle="0"/>
+                </key>
+                <key id="1" time="599" spin="0">
+                    <object folder="0" file="7" x="-64" y="68" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ship_damaged6">
+                <key id="0" spin="0">
+                    <object folder="0" file="13" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="1" time="300" spin="0">
+                    <object folder="0" file="13" x="-64" y="68" angle="0" a="0.5"/>
+                </key>
+                <key id="2" time="442" spin="0">
+                    <object folder="0" file="13" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="3" time="599" spin="0">
+                    <object folder="0" file="13" x="-64" y="68" angle="0" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="part_0007_cracks">
+                <key id="0" spin="0">
+                    <object folder="0" file="16" x="4" y="20" angle="0" a="0"/>
+                </key>
+                <key id="1" time="145" spin="0">
+                    <object folder="0" file="16" x="4" y="20" angle="0"/>
+                </key>
+                <key id="2" time="599" spin="0">
+                    <object folder="0" file="16" x="4" y="20" angle="0" a="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="2" name="Ship1_lvl5_damage" length="600" interval="100" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="153">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="2" time="299">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
+                </key>
+                <key id="3" time="442">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
+                </key>
+                <key id="4" time="599">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="3" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ship_asset5">
+                <key id="0" spin="0">
+                    <object folder="0" file="6" x="-64" y="68" angle="0"/>
+                </key>
+                <key id="1" time="599" spin="0">
+                    <object folder="0" file="6" x="-64" y="68" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ship_damaged5">
+                <key id="0" spin="0">
+                    <object folder="0" file="12" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="1" time="299" spin="0">
+                    <object folder="0" file="12" x="-64" y="68" angle="0" a="0.5"/>
+                </key>
+                <key id="2" time="442" spin="0">
+                    <object folder="0" file="12" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="3" time="599" spin="0">
+                    <object folder="0" file="12" x="-64" y="68" angle="0" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="part_0008_cracks">
+                <key id="0" spin="0">
+                    <object folder="0" file="17" x="-3" y="13" angle="0" a="0"/>
+                </key>
+                <key id="1" time="153" spin="0">
+                    <object folder="0" file="17" x="-3" y="13" angle="0"/>
+                </key>
+                <key id="2" time="599" spin="0">
+                    <object folder="0" file="17" x="-3" y="13" angle="0" a="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="3" name="Ship1_lvl4_damage" length="600" interval="100" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="152">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="2" time="300">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
+                </key>
+                <key id="3" time="441">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
+                </key>
+                <key id="4" time="599">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="3" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ship_asset4">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-64" y="68" angle="0"/>
+                </key>
+                <key id="1" time="599" spin="0">
+                    <object folder="0" file="5" x="-64" y="68" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ship_damaged4">
+                <key id="0" spin="0">
+                    <object folder="0" file="11" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="1" time="300" spin="0">
+                    <object folder="0" file="11" x="-64" y="68" angle="0" a="0.5"/>
+                </key>
+                <key id="2" time="441" spin="0">
+                    <object folder="0" file="11" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="3" time="599" spin="0">
+                    <object folder="0" file="11" x="-64" y="68" angle="0" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="part_0007_cracks_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="18" x="8" y="16" angle="0" a="0"/>
+                </key>
+                <key id="1" time="152" spin="0">
+                    <object folder="0" file="18" x="8" y="16" angle="0"/>
+                </key>
+                <key id="2" time="599" spin="0">
+                    <object folder="0" file="18" x="8" y="16" angle="0" a="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="4" name="Ship1_lv3_damage" length="600" interval="100" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="148">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="2" time="299">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
+                </key>
+                <key id="3" time="445">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
+                </key>
+                <key id="4" time="598">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="3" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ship_asset3">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-64" y="68" angle="0"/>
+                </key>
+                <key id="1" time="598" spin="0">
+                    <object folder="0" file="4" x="-64" y="68" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ship_damaged3">
+                <key id="0" spin="0">
+                    <object folder="0" file="10" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="1" time="299" spin="0">
+                    <object folder="0" file="10" x="-64" y="68" angle="0" a="0.5"/>
+                </key>
+                <key id="2" time="445" spin="0">
+                    <object folder="0" file="10" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="3" time="598" spin="0">
+                    <object folder="0" file="10" x="-64" y="68" angle="0" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="part_0006_cracks">
+                <key id="0" spin="0">
+                    <object folder="0" file="19" x="3" y="17" angle="0" a="0"/>
+                </key>
+                <key id="1" time="148" spin="0">
+                    <object folder="0" file="19" x="3" y="17" angle="0"/>
+                </key>
+                <key id="2" time="598" spin="0">
+                    <object folder="0" file="19" x="3" y="17" angle="0" a="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="5" name="Ship1_lvl2_damage" length="600" interval="100" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="148">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="2" time="299">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
+                </key>
+                <key id="3" time="446">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
+                </key>
+                <key id="4" time="599">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="3" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ship_asset2">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-64" y="68" angle="0"/>
+                </key>
+                <key id="1" time="599" spin="0">
+                    <object folder="0" file="3" x="-64" y="68" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ship_damaged2">
+                <key id="0" spin="0">
+                    <object folder="0" file="9" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="1" time="299" spin="0">
+                    <object folder="0" file="9" x="-64" y="68" angle="0" a="0.5"/>
+                </key>
+                <key id="2" time="446" spin="0">
+                    <object folder="0" file="9" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="3" time="599" spin="0">
+                    <object folder="0" file="9" x="-64" y="68" angle="0" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="part_0005_cracks">
+                <key id="0" spin="0">
+                    <object folder="0" file="20" x="-9" y="19" angle="0" a="0"/>
+                </key>
+                <key id="1" time="148" spin="0">
+                    <object folder="0" file="20" x="-9" y="19" angle="0"/>
+                </key>
+                <key id="2" time="599" spin="0">
+                    <object folder="0" file="20" x="-9" y="19" angle="0" a="0"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="6" name="Ship1_lvl1_damage" length="600" interval="100" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="142">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="0" z_index="2"/>
+                </key>
+                <key id="2" time="298">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="1" z_index="2"/>
+                </key>
+                <key id="3" time="451">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="2" z_index="2"/>
+                </key>
+                <key id="4" time="594">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="2" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="1" key="3" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="ship_asset1_000">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-64" y="68" angle="0"/>
+                </key>
+                <key id="1" time="594" spin="0">
+                    <object folder="0" file="0" x="-64" y="68" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="ship_damaged1">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="1" time="298" spin="0">
+                    <object folder="0" file="2" x="-64" y="68" angle="0" a="0.5"/>
+                </key>
+                <key id="2" time="451" spin="0">
+                    <object folder="0" file="2" x="-64" y="68" angle="0" a="0"/>
+                </key>
+                <key id="3" time="594" spin="0">
+                    <object folder="0" file="2" x="-64" y="68" angle="0" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="part_0004_cracks">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-6" y="12" angle="0" a="0"/>
+                </key>
+                <key id="1" time="142" spin="0">
+                    <object folder="0" file="1" x="-6" y="12" angle="0"/>
+                </key>
+                <key id="2" time="594" spin="0">
+                    <object folder="0" file="1" x="-6" y="12" angle="0" a="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
