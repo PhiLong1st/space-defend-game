@@ -15,7 +15,7 @@ public class ParallaxBackground : MonoBehaviour
 
   private void Update()
   {
-    float moveX = moveSpeed * Time.deltaTime;
+    float moveX = moveSpeed * SpaceshipController.Instance.CurrentSpeed * Time.deltaTime;
     transform.position += new Vector3(moveX, 0);
 
     if (Mathf.Abs(transform.position.x) - _backgroundWidth > 0)
