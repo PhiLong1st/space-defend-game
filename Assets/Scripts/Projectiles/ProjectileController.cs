@@ -18,6 +18,18 @@ public class ProjectileController : MonoBehaviour
 
   public void HandleMovement()
   {
-    _transform.position += _transform.up * _projectile.Speed * Time.fixedDeltaTime;
+    _transform.position += _transform.right * _projectile.Speed * Time.fixedDeltaTime;
+  }
+
+  private void OnCollisionEnter2D(Collision2D other)
+  {
+    if (other.gameObject.CompareTag("Player"))
+    {
+      return;
+    }
+
+    Debug.Log("Hit!");
+    Destroy(gameObject);
+    // other.gameObject.SetActive(false);
   }
 }

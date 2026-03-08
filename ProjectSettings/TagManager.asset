@@ -13,8 +13,8 @@ TagManager:
   - UI
   - Background
   - Spaceship
-  - 
-  - 
+  - LevelBoundaries
+  - Obstacle
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Spaceship
     uniqueID: 3084890293
+    locked: 0
+  - name: Projectile
+    uniqueID: 1286846775
     locked: 0
   - name: UI
     uniqueID: 2268114827

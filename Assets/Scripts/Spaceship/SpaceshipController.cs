@@ -4,6 +4,8 @@ public class SpaceshipController : MonoBehaviour
 {
   public static SpaceshipController Instance { get; private set; }
   [SerializeField] private Spaceship _spaceship;
+  [SerializeField] private GameObject _projectileGO;
+  [SerializeField] private GameObject _gun;
 
   private SpaceshipView _spaceshipView;
 
@@ -19,7 +21,6 @@ public class SpaceshipController : MonoBehaviour
   public float MaxStamina => _spaceship.MaxStamina;
   public float MaxShield => _spaceship.MaxShield;
   #endregion
-
 
   private void Awake()
   {
@@ -39,6 +40,16 @@ public class SpaceshipController : MonoBehaviour
   void Update()
   {
     HandleMovement();
+    HandleShoot();
+  }
+
+  public void HandleShoot()
+  {
+    if (Input.GetMouseButtonDown(0))
+    {
+      Instantiate(_projectileGO, _gun.transform.position, _gun.transform.rotation);
+      Debug.Log("Shoot!");
+    }
   }
 
   public void HandleMovement()
@@ -89,5 +100,13 @@ public class SpaceshipController : MonoBehaviour
   {
     _spaceship.ApplyBoostMultiplier(0.5f);
     _spaceshipView.ExitBoost();
+  }
+
+  public void TakeDamage(int damage)
+  {
+    _spaceship.TakeDamage(damage);
+    _spaceshipView.UpdateHealthBar(CurrentHealth / MaxHealth);
+    _spaceshipView.PlayDamageAnimation();
+    Debug.Log($"Player took {damage} damage. Current health: {CurrentHealth}/{MaxHealth}");
   }
 }

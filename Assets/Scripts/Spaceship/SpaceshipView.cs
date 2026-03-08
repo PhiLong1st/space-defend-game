@@ -5,6 +5,8 @@ using TMPro;
 public class SpaceshipView : MonoBehaviour
 {
   [SerializeField] private Animator _engineAnimator;
+  [SerializeField] private Animator _spaceshipAnimator;
+
   [SerializeField] private Spaceship _spaceship;
 
   #region Stat UI
@@ -29,12 +31,31 @@ public class SpaceshipView : MonoBehaviour
 
   private void Update()
   {
-    _healthSlider.value = (float)_spaceship.CurrentHealth / _spaceship.MaxHealth;
-    _staminaSlider.value = (float)_spaceship.CurrentStamina / _spaceship.MaxStamina;
-    _shieldSlider.value = (float)_spaceship.CurrentShield / _spaceship.MaxShield;
+    UpdateHealthBar((float)_spaceship.CurrentHealth / _spaceship.MaxHealth);
+    UpdateStaminaBar((float)_spaceship.CurrentStamina / _spaceship.MaxStamina);
+    UpdateShieldBar((float)_spaceship.CurrentShield / _spaceship.MaxShield);
+  }
 
+  public void UpdateHealthBar(float healthPercent)
+  {
+    _healthSlider.value = healthPercent;
     _healthText.text = $"{_spaceship.CurrentHealth}/{_spaceship.MaxHealth}";
+  }
+
+  public void UpdateStaminaBar(float staminaPercent)
+  {
+    _staminaSlider.value = staminaPercent;
     _staminaText.text = $"{_spaceship.CurrentStamina}/{_spaceship.MaxStamina}";
+  }
+
+  public void UpdateShieldBar(float shieldPercent)
+  {
+    _shieldSlider.value = shieldPercent;
     _shieldText.text = $"{_spaceship.CurrentShield}/{_spaceship.MaxShield}";
+  }
+
+  public void PlayDamageAnimation()
+  {
+    _spaceshipAnimator.SetTrigger("takeDamage");
   }
 }

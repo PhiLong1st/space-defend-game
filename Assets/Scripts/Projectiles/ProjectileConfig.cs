@@ -5,4 +5,5 @@ public class ProjectileConfig : ScriptableObject
 {
   public float speed;
   public int damage;
+  public float attackSpeed;
 }

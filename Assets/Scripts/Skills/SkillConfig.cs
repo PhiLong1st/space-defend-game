@@ -11,6 +11,9 @@ public class SkillConfig : ScriptableObject
   [Tooltip("Display name")]
   public string DisplayName;
 
+  [Tooltip("Skill Icon")]
+  public Sprite SkillIcon;
+
   [Header("Behavior")]
   [Tooltip("Time in seconds for skill cooldown")]
   public float SkillCooldown = 5f;
@@ -18,6 +21,9 @@ public class SkillConfig : ScriptableObject
   [Tooltip("Energy required for skill activation")]
   public int SkillEnergy = 5;
 
-  [Tooltip("Activation key for skill (e.g., KeyCode.Space)")]
-  public KeyCode ActivationKey = KeyCode.Space;
+  [Tooltip("Duration in seconds for skill effect (if applicable)")]
+  public int SkillTimeDuration = 2;
+
+  [Tooltip("Is this skill passive (always available, no cooldown)")]
+  public bool IsPassive = false;
 }
