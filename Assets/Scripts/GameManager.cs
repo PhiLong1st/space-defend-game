@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
   public static GameManager Instance;
+  public bool isPausing = false;
+
+  private float _worldSpeed = 1f;
+  public float WorldSpeed => _worldSpeed;
 
   void Awake()
   {
@@ -28,15 +32,17 @@ public class GameManager : MonoBehaviour
 
   public void Pause()
   {
-    if (UIController.Instance.pausePanel.activeSelf == false)
+    if (!isPausing)
     {
-      UIController.Instance.pausePanel.SetActive(true);
+      isPausing = true;
       Time.timeScale = 0f;
+      UIController.Instance.ShowPausePanel();
       // AudioManager.Instance.PlaySound(AudioManager.Instance.pause);
     }
     else
     {
-      UIController.Instance.pausePanel.SetActive(false);
+      isPausing = false;
+      UIController.Instance.HidePausePanel();
       Time.timeScale = 1f;
       //  AudioManager.Instance.PlaySound(AudioManager.Instance.unpause);
     }
@@ -50,16 +56,5 @@ public class GameManager : MonoBehaviour
   public void GoToMainMenu()
   {
     SceneManager.LoadScene("MainMenu");
-  }
-
-  public void GameOver()
-  {
-    StartCoroutine(ShowGameOverScreen());
-  }
-
-  IEnumerator ShowGameOverScreen()
-  {
-    yield return new WaitForSeconds(3f);
-    SceneManager.LoadScene("GameOver");
   }
 }

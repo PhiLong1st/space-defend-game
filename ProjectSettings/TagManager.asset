@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - WanderZone
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Spaceship
   - LevelBoundaries
   - Obstacle
-  - 
+  - Projectile
   - 
   - 
   - 
@@ -41,10 +42,10 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Skill
+  - name: 
     uniqueID: 782390081
     locked: 0
-  - name: Tank
+  - name: 
     uniqueID: 116603157
     locked: 0
   - name: Background

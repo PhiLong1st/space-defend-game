@@ -4,58 +4,40 @@ using TMPro;
 
 public class SpaceshipView : MonoBehaviour
 {
-  [SerializeField] private Animator _engineAnimator;
-  [SerializeField] private Animator _spaceshipAnimator;
-
+  private Animator _animator;
   [SerializeField] private Spaceship _spaceship;
 
-  #region Stat UI
-  [SerializeField] private Slider _healthSlider;
-  [SerializeField] private Slider _staminaSlider;
-  [SerializeField] private Slider _shieldSlider;
+  [SerializeField] private GameObject[] _shipViewLevelPrefabs;
+  
+  private GameObject CurrentShipView;
 
-  [SerializeField] private TextMeshProUGUI _healthText;
-  [SerializeField] private TextMeshProUGUI _staminaText;
-  [SerializeField] private TextMeshProUGUI _shieldText;
-  #endregion
-
-  public void EnterBoost()
+  private void Awake()
   {
-    _engineAnimator.SetBool("isBoosting", true);
+    _animator = GetComponent<Animator>();
   }
 
-  public void ExitBoost()
+  private void Start()
   {
-    _engineAnimator.SetBool("isBoosting", false);
+    UpdateShipView();
   }
 
-  private void Update()
+  public void PlayLevelUpAnimation()
   {
-    UpdateHealthBar((float)_spaceship.CurrentHealth / _spaceship.MaxHealth);
-    UpdateStaminaBar((float)_spaceship.CurrentStamina / _spaceship.MaxStamina);
-    UpdateShieldBar((float)_spaceship.CurrentShield / _spaceship.MaxShield);
+    UpdateShipView();
   }
 
-  public void UpdateHealthBar(float healthPercent)
+  private void UpdateShipView()
   {
-    _healthSlider.value = healthPercent;
-    _healthText.text = $"{_spaceship.CurrentHealth}/{_spaceship.MaxHealth}";
-  }
+    int level = Mathf.Min(_spaceship.CurrentLevel, _shipViewLevelPrefabs.Length);
 
-  public void UpdateStaminaBar(float staminaPercent)
-  {
-    _staminaSlider.value = staminaPercent;
-    _staminaText.text = $"{_spaceship.CurrentStamina}/{_spaceship.MaxStamina}";
-  }
+    if (CurrentShipView != null)
+    {
+      Destroy(CurrentShipView);
+    }
 
-  public void UpdateShieldBar(float shieldPercent)
-  {
-    _shieldSlider.value = shieldPercent;
-    _shieldText.text = $"{_spaceship.CurrentShield}/{_spaceship.MaxShield}";
-  }
+    GameObject shipView = Instantiate(_shipViewLevelPrefabs[level - 1], transform.position, transform.rotation, transform);
+    shipView.SetActive(true);
 
-  public void PlayDamageAnimation()
-  {
-    _spaceshipAnimator.SetTrigger("takeDamage");
+    CurrentShipView = shipView;
   }
 }

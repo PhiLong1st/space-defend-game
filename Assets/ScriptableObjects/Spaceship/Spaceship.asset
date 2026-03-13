@@ -14,9 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipConfig
   ShipId: Spaceship
   DisplayName: Spaceship
-  MaxHealth: 100
-  MaxStamina: 100
-  MaxShield: 100
   MovementSpeed: 5
-  BoostSpeed: 1
+  Damage: 10
+  MovementSpeedIncreasePerLevel: 0.5
+  DamageIncreasePerLevel: 2
   Level: 1
+  ShipViewLevelPrefabs:
+  - {fileID: 3518090623429156044, guid: e4451e6c8dd313c4e8a8a478f01d8e0c, type: 3}
+  - {fileID: 7827402917369795045, guid: 120c55be59d6f174d9d207ab2ce3017c, type: 3}
+  - {fileID: 641249807518194209, guid: 40f06684bcd1ad04596bae27bf402548, type: 3}
+  - {fileID: 1506271679915271621, guid: fa6de8d5e920c9544a6e575d999a13bd, type: 3}
+  - {fileID: 2726203359055969345, guid: 0857b990e5e8ceb429670aab30ecc1c8, type: 3}
+  - {fileID: 7872470316738056771, guid: 74d66e81828ece344bc9ddca632fb694, type: 3}
+  - {fileID: 6706360365498732421, guid: c70f3f55ecba736438cea3e78d58251c, type: 3}

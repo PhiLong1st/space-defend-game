@@ -1,43 +1,50 @@
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+using System;
 
 public class Spaceship : MonoBehaviour
 {
   [SerializeField] private SpaceshipConfig _config;
 
-  [SerializeField] private int _currentHealth;
-  [SerializeField] private int _currentStamina;
-  [SerializeField] private int _currentShield;
-  [SerializeField] private float _currentMovementSpeed;
-  [SerializeField] private float _currentBoostSpeed;
+  private float _currentMovementSpeed;
+  private float _currentDamage;
+  private int _currentLevel;
+  private int _currentExperience;
 
-  public int CurrentHealth => _currentHealth;
-  public int CurrentStamina => _currentStamina;
-  public int CurrentShield => _currentShield;
-  public float CurrentMovementSpeed => _currentMovementSpeed;
-  public float CurrentBoostSpeed => _currentBoostSpeed;
-
-  public int MaxHealth => _config.MaxHealth;
-  public int MaxStamina => _config.MaxStamina;
-  public int MaxShield => _config.MaxShield;
+  public float CurrentMovementSpeed => _currentMovementSpeed * GameManager.Instance.WorldSpeed;
+  public float CurrentDamage => _currentDamage;
+  public int CurrentLevel => _currentLevel;
+  public int CurrentExperience => _currentExperience;
 
   private void Awake()
   {
-    _currentHealth = MaxHealth;
-    _currentStamina = MaxStamina;
-    _currentShield = MaxShield;
     _currentMovementSpeed = _config.MovementSpeed;
-    _currentBoostSpeed = _config.BoostSpeed;
+    _currentDamage = _config.Damage;
+    _currentLevel = _config.Level;
+    _currentExperience = 0;
   }
 
-  public void ApplyBoostMultiplier(float xMultiplier)
+  public void GainExperience(int amount)
   {
-    _currentBoostSpeed *= xMultiplier;
+    _currentExperience += amount;
+    _currentExperience = Mathf.Min(_currentExperience, 100);
   }
 
-  public void TakeDamage(int damage)
+  public void Move(Vector2 direction)
   {
-    _currentHealth = Mathf.Max(0, _currentHealth - damage);
+    Vector2 newPosition = (Vector2)transform.position + direction.normalized * CurrentMovementSpeed * Time.deltaTime;
+    transform.position = newPosition;
+  }
+
+  public bool CanLevelUp()
+  {
+    return _currentExperience >= 100 && _currentLevel < _config.MaxLevel;
+  }
+
+  public void LevelUp()
+  {
+    _currentLevel++;
+    _currentMovementSpeed += _config.MovementSpeedIncreasePerLevel;
+    _currentDamage += _config.DamageIncreasePerLevel;
+    _currentExperience = 0;
   }
 }
