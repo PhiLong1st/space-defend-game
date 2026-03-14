@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - WanderZone
+  - Obstacle
+  - Trap
+  - WarningBound
   layers:
   - Default
   - TransparentFX

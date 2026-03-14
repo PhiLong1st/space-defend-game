@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7193418236829854130}
   m_Layer: 9
   m_Name: Meteor
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,5 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9574dc922675add409d0cb3140955108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Meteor
-  _lives: 3
   _damage: 3
+  _lives: 3
+  _maxSpeed: 1
+  wanderCircleDistance: 2
+  wanderCircleRadius: 1
+  wanderAngleChange: 15
+  maxSteeringForce: 0.5

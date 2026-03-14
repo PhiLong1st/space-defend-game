@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Meteor : AbstractTouchTrap
@@ -17,16 +16,6 @@ public class Meteor : AbstractTouchTrap
 
   private bool _shouldWander = false;
 
-  void Start()
-  {
-    float pushX = Random.Range(-1f, 0f);
-    _rb.linearVelocity = new Vector2(pushX, 0).normalized * _maxSpeed;
-
-    float randomScale = Random.Range(0.6f, 1f);
-    transform.localScale = new Vector2(randomScale, randomScale);
-    _wanderAngle = Random.Range(0f, 360f);
-  }
-
   void FixedUpdate()
   {
     if (_shouldWander)
@@ -38,30 +27,56 @@ public class Meteor : AbstractTouchTrap
   private void ApplyWanderBehavior()
   {
     Vector2 velocityDir = _rb.linearVelocity.normalized;
+    if (velocityDir == Vector2.zero) velocityDir = Vector2.right;
+
     Vector2 circleCenter = (Vector2)transform.position + (velocityDir * wanderCircleDistance);
 
-    float jitter = Random.Range(-wanderAngleChange, wanderAngleChange);
+    float jitter = Random.Range(-wanderAngleChange, wanderAngleChange) * Time.fixedDeltaTime;
     _wanderAngle += jitter;
 
-    float angleRad = _wanderAngle * Mathf.Deg2Rad;
-    Vector2 displacement = new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad)) * wanderCircleRadius;
+    float baseAngle = Mathf.Atan2(velocityDir.y, velocityDir.x);
+    float finalAngle = baseAngle + (_wanderAngle * Mathf.Deg2Rad);
 
+    Vector2 displacement = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle)) * wanderCircleRadius;
     Vector2 targetPoint = circleCenter + displacement;
 
     Vector2 desiredVelocity = (targetPoint - (Vector2)transform.position).normalized * _maxSpeed;
-    Vector2 steeringForce = desiredVelocity - _rb.linearVelocity;
+    Vector2 steering = desiredVelocity - _rb.linearVelocity;
 
-    steeringForce = Vector2.ClampMagnitude(steeringForce, maxSteeringForce);
+    steering = Vector2.ClampMagnitude(steering, maxSteeringForce);
 
-    _rb.AddForce(steeringForce, ForceMode2D.Force);
+    _rb.AddForce(steering, ForceMode2D.Force);
+
+    if (_rb.linearVelocity.magnitude > _maxSpeed)
+    {
+      _rb.linearVelocity = _rb.linearVelocity.normalized * _maxSpeed;
+    }
 
     _circleCenterDebug = circleCenter;
     _targetPointDebug = targetPoint;
   }
 
-  public override void Activate()
+  public override void OnActivate()
   {
+    _shouldWander = false;
 
+    float pushX = Random.Range(-1f, 0f);
+    _rb.linearVelocity = new Vector2(pushX, 0f).normalized * _maxSpeed;
+
+    float randomScale = Random.Range(0.6f, 1f);
+    transform.localScale = new Vector2(randomScale, randomScale);
+    _wanderAngle = Random.Range(0f, 360f);
+  }
+
+  public override void OnDeactivate()
+  {
+    _shouldWander = false;
+
+    if (_rb != null)
+    {
+      _rb.linearVelocity = Vector2.zero;
+      _rb.angularVelocity = 0f;
+    }
   }
 
   private void OnTriggerEnter2D(Collider2D other)
