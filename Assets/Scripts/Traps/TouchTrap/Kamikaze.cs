@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class Kamikaze : AbstractTouchTrap
 {
   [Header("Timing & Speed")]
-  [SerializeField] private float _timeToTarget = 4f;
-  [SerializeField] private float _targetSpeed = 1f;
+  [SerializeField] private float _timeToTarget = GameData.KamikazeTimeToTarget;
+  [SerializeField] private float _targetSpeed = GameData.KamikazeTargetSpeed;
 
   [Header("References")]
   [SerializeField] private GameObject _warningEffectPrefab;

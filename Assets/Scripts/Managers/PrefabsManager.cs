@@ -13,7 +13,7 @@ public class PrefabData
 {
   public PrefabType type;
   public GameObject prefab;
-  public int poolSize = 20;
+  public int poolSize = GameData.DefaultPrefabPoolSize;
 }
 
 public class PrefabsManager : MonoBehaviour
@@ -46,13 +46,6 @@ public class PrefabsManager : MonoBehaviour
       if (!_pools.ContainsKey(config.type))
       {
         var objectPool = new Pooler(transform, config.prefab, config.poolSize);
-
-        for (int i = 0; i < config.poolSize; i++)
-        {
-          GameObject obj = Instantiate(config.prefab, transform);
-          obj.SetActive(false);
-        }
-
         _pools.Add(config.type, objectPool);
       }
     }

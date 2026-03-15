@@ -7,13 +7,13 @@ public class GameManager : MonoBehaviour
   public static GameManager Instance;
   public bool isPausing = false;
 
-  private float _worldSpeed = 1f;
+  private float _worldSpeed = GameData.InitialWorldSpeed;
   public float WorldSpeed => _worldSpeed;
 
-  private float _score = 0f;
+  private float _score = GameData.InitialScore;
   public float Score => _score;
 
-  private float _scoreMilestone = 200f;
+  private float _scoreMilestone = GameData.InitialScoreMilestone;
 
   void Awake()
   {
@@ -29,20 +29,21 @@ public class GameManager : MonoBehaviour
 
   private void Start()
   {
-    Time.timeScale = 1f;
-    _score = 0;
-    _worldSpeed = 1f;
+    Time.timeScale = GameData.NormalTimeScale;
+    _score = GameData.InitialScore;
+    _worldSpeed = GameData.InitialWorldSpeed;
+    _scoreMilestone = GameData.InitialScoreMilestone;
   }
 
   void Update()
   {
     if (!isPausing)
     {
-      _score += 10 * Time.deltaTime;
+      _score += GameData.ScorePerSecond * Time.deltaTime;
       if (_score >= _scoreMilestone)
       {
-        _worldSpeed = Mathf.Min(_worldSpeed + 0.5f, 2f);
-        _scoreMilestone = Mathf.Min(_scoreMilestone * 2f, 10000f);
+        _worldSpeed = Mathf.Min(_worldSpeed + GameData.WorldSpeedIncrement, GameData.MaxWorldSpeed);
+        _scoreMilestone = Mathf.Min(_scoreMilestone * GameData.ScoreMilestoneMultiplier, GameData.MaxScoreMilestone);
       }
     }
   }
@@ -52,14 +53,14 @@ public class GameManager : MonoBehaviour
     if (!isPausing)
     {
       isPausing = true;
-      Time.timeScale = 0f;
+      Time.timeScale = GameData.PausedTimeScale;
       GameUIManager.Instance.ShowPausePanel();
     }
     else
     {
       isPausing = false;
       GameUIManager.Instance.HidePausePanel();
-      Time.timeScale = 1f;
+      Time.timeScale = GameData.NormalTimeScale;
     }
   }
 
@@ -67,7 +68,7 @@ public class GameManager : MonoBehaviour
   {
     isPausing = true;
 
-    Time.timeScale = 0f;
+    Time.timeScale = GameData.PausedTimeScale;
     GameUIManager.Instance.ShowLostPanel();
     AudioManager.Instance.PlaySFX(AudioSFXEnum.GameOver);
 
@@ -76,7 +77,7 @@ public class GameManager : MonoBehaviour
 
   public void Restart()
   {
-    Time.timeScale = 1f;
+    Time.timeScale = GameData.NormalTimeScale;
     isPausing = false;
     SceneLoader.LoadScene(SceneManager.GetActiveScene().name);
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Pooler
 {
-  private int _poolSize = 5;
+  private int _poolSize = GameData.DefaultPoolSize;
   private List<GameObject> pool;
   private Transform _transform;
   private GameObject _prefab;

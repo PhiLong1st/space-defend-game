@@ -2,9 +2,7 @@ using UnityEngine;
 
 public abstract class AbstractTouchTrap : MonoBehaviour
 {
-  [SerializeField] protected int _damage = 1;
-  [SerializeField] protected int _lives = 1;
-  [SerializeField] protected float _maxSpeed = 2;
+  [SerializeField] protected float _maxSpeed = GameData.DefaultTrapMaxSpeed;
 
   protected Rigidbody2D _rb;
 

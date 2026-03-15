@@ -59,10 +59,10 @@ public class Meteor : AbstractTouchTrap
   {
     _shouldWander = false;
 
-    float pushX = Random.Range(-1f, 0f);
+    float pushX = Random.Range(GameData.MeteorPushXMin, GameData.MeteorPushXMax);
     _rb.linearVelocity = new Vector2(pushX, 0f).normalized * _maxSpeed;
 
-    float randomScale = Random.Range(0.6f, 1.2f);
+    float randomScale = Random.Range(GameData.MeteorScaleMin, GameData.MeteorScaleMax);
     transform.localScale = new Vector2(randomScale, randomScale);
     _wanderAngle = Random.Range(0f, 360f);
   }
