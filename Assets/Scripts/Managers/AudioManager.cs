@@ -5,8 +5,9 @@ using UnityEngine;
 public enum AudioSFXEnum
 {
   ButtonClick,
-  EngineStart,
+  Explosion,
   GameOver,
+  KamikazeEngine,
 }
 
 public enum AudioMusicEnum

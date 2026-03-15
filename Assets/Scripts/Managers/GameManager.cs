@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
   private float _worldSpeed = 1f;
   public float WorldSpeed => _worldSpeed;
 
-  private int _score = 0;
-  public int Score => _score;
+  private float _score = 0f;
+  public float Score => _score;
+
+  private float _scoreMilestone = 200f;
 
   void Awake()
   {
@@ -36,26 +38,12 @@ public class GameManager : MonoBehaviour
   {
     if (!isPausing)
     {
-      _score += 1;
-      if (_score % 500 == 0 && _score > 0)
+      _score += 10 * Time.deltaTime;
+      if (_score >= _scoreMilestone)
       {
-        _worldSpeed = Mathf.Max(_worldSpeed, 2f);
+        _worldSpeed = Mathf.Min(_worldSpeed + 0.5f, 2f);
+        _scoreMilestone = Mathf.Min(_scoreMilestone * 2f, 10000f);
       }
-    }
-
-    if (Input.GetKeyDown(KeyCode.Escape))
-    {
-      Pause();
-    }
-
-    if (Input.GetKeyDown(KeyCode.L))
-    {
-      GameOver();
-    }
-
-    if (Input.GetKeyDown(KeyCode.R))
-    {
-      Restart();
     }
   }
 
@@ -83,7 +71,7 @@ public class GameManager : MonoBehaviour
     GameUIManager.Instance.ShowLostPanel();
     AudioManager.Instance.PlaySFX(AudioSFXEnum.GameOver);
 
-    DataManager.Instance.BestScore = Score;
+    DataManager.Instance.BestScore = Mathf.RoundToInt(Score);
   }
 
   public void Restart()
@@ -91,6 +79,9 @@ public class GameManager : MonoBehaviour
     Time.timeScale = 1f;
     isPausing = false;
     SceneLoader.LoadScene(SceneManager.GetActiveScene().name);
+
+    GameUIManager.Instance.HidePausePanel();
+    GameUIManager.Instance.HideLostPanel();
   }
 
   public void QuitGame()
@@ -100,11 +91,11 @@ public class GameManager : MonoBehaviour
 
   public void GoToMainMenu()
   {
-    // 
+    SceneLoader.LoadScene("Main_Menu");
   }
 
   public void GoToSettings()
   {
-    // 
+    // Implementation for going to settings
   }
 }

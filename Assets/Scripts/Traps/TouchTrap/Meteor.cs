@@ -3,13 +3,12 @@ using UnityEngine;
 public class Meteor : AbstractTouchTrap
 {
   [Header("Wander Settings")]
-  public float wanderCircleDistance = 2f;
-  public float wanderCircleRadius = 1f;
-  public float wanderAngleChange = 15f;
-  public float maxSteeringForce = 0.5f;
+  [SerializeField] private float _wanderCircleDistance = 2f;
+  [SerializeField] private float _wanderCircleRadius = 1f;
+  [SerializeField] private float _wanderAngleChange = 15f;
+  [SerializeField] private float _maxSteeringForce = 0.5f;
 
   private float _wanderAngle;
-
 
   private Vector2 _circleCenterDebug;
   private Vector2 _targetPointDebug;
@@ -29,21 +28,21 @@ public class Meteor : AbstractTouchTrap
     Vector2 velocityDir = _rb.linearVelocity.normalized;
     if (velocityDir == Vector2.zero) velocityDir = Vector2.right;
 
-    Vector2 circleCenter = (Vector2)transform.position + (velocityDir * wanderCircleDistance);
+    Vector2 circleCenter = (Vector2)transform.position + (velocityDir * _wanderCircleDistance);
 
-    float jitter = Random.Range(-wanderAngleChange, wanderAngleChange) * Time.fixedDeltaTime;
+    float jitter = Random.Range(-_wanderAngleChange, _wanderAngleChange) * Time.fixedDeltaTime;
     _wanderAngle += jitter;
 
     float baseAngle = Mathf.Atan2(velocityDir.y, velocityDir.x);
     float finalAngle = baseAngle + (_wanderAngle * Mathf.Deg2Rad);
 
-    Vector2 displacement = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle)) * wanderCircleRadius;
+    Vector2 displacement = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle)) * _wanderCircleRadius;
     Vector2 targetPoint = circleCenter + displacement;
 
     Vector2 desiredVelocity = (targetPoint - (Vector2)transform.position).normalized * _maxSpeed;
     Vector2 steering = desiredVelocity - _rb.linearVelocity;
 
-    steering = Vector2.ClampMagnitude(steering, maxSteeringForce);
+    steering = Vector2.ClampMagnitude(steering, _maxSteeringForce);
 
     _rb.AddForce(steering, ForceMode2D.Force);
 
@@ -63,7 +62,7 @@ public class Meteor : AbstractTouchTrap
     float pushX = Random.Range(-1f, 0f);
     _rb.linearVelocity = new Vector2(pushX, 0f).normalized * _maxSpeed;
 
-    float randomScale = Random.Range(0.6f, 1f);
+    float randomScale = Random.Range(0.6f, 1.2f);
     transform.localScale = new Vector2(randomScale, randomScale);
     _wanderAngle = Random.Range(0f, 360f);
   }
@@ -95,7 +94,7 @@ public class Meteor : AbstractTouchTrap
     Gizmos.DrawLine(transform.position, _circleCenterDebug);
 
     Gizmos.color = Color.yellow;
-    Gizmos.DrawWireSphere(_circleCenterDebug, wanderCircleRadius);
+    Gizmos.DrawWireSphere(_circleCenterDebug, _wanderCircleRadius);
 
     Gizmos.color = Color.red;
     Gizmos.DrawSphere(_targetPointDebug, 0.1f);

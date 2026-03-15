@@ -52,27 +52,14 @@ public class SpaceshipController : MonoBehaviour
       var direction = -transform.up;
       _spaceship.Move(direction);
     }
-
-    if (Input.GetKey(KeyCode.A))
-    {
-      var direction = -transform.right;
-      _spaceship.Move(direction);
-    }
-
-    if (Input.GetKey(KeyCode.D))
-    {
-      var direction = transform.right;
-      _spaceship.Move(direction);
-    }
   }
 
-  private void OnTriggerEnter2D(Collider2D collision)
+  private void OnCollisionEnter2D(Collision2D collision)
   {
     if (collision.gameObject.CompareTag("Obstacle"))
     {
       _spaceship.HandleDestroy();
       _spaceshipView.PlayExplosionEffect();
-      Debug.Log("Collision detected with: " + collision.gameObject.name);
     }
   }
 }

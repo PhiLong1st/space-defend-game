@@ -26,6 +26,12 @@ public class SpaceshipView : MonoBehaviour
   private IEnumerator ExplosionRoutine()
   {
     _animator.SetTrigger("Explosion");
+
+    if (AudioManager.Instance != null)
+    {
+      AudioManager.Instance.PlaySFX(AudioSFXEnum.Explosion);
+    }
+
     yield return new WaitForSeconds(_explosionClip.length);
 
     _engine.SetActive(false);

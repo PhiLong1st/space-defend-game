@@ -47,6 +47,7 @@ public class TrapSpawner : MonoBehaviour
     trap.transform.position = RandomSpawnPoint();
     trap.transform.rotation = Quaternion.identity;
     trap.SetActive(true);
+    
   }
 
   private Vector2 RandomSpawnPoint()

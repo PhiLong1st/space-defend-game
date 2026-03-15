@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2574631473141532864}
   - component: {fileID: 7478521565869449826}
   - component: {fileID: 3935152180315313236}
-  - component: {fileID: 7193418236829854130}
+  - component: {fileID: 6660832669802917310}
   m_Layer: 9
   m_Name: Meteor
   m_TagString: Obstacle
@@ -181,7 +181,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7193418236829854130
+--- !u!114 &6660832669802917310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,9 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9574dc922675add409d0cb3140955108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Meteor
-  _damage: 3
-  _lives: 3
-  _maxSpeed: 1
+  _damage: 1
+  _lives: 1
+  _maxSpeed: 2
   wanderCircleDistance: 2
   wanderCircleRadius: 1
   wanderAngleChange: 15

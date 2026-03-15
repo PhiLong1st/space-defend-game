@@ -1,8 +1,17 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Kamikaze : AbstractTouchTrap
 {
-  [SerializeField] private float _timeToTarget = 3f;
+  [Header("Timing & Speed")]
+  [SerializeField] private float _timeToTarget = 4f;
+  [SerializeField] private float _targetSpeed = 1f;
+
+  [Header("References")]
+  [SerializeField] private GameObject _warningEffectPrefab;
+
+  public float TargetSpeed => _targetSpeed * GameManager.Instance.WorldSpeed;
+  public float MaxSpeed => _maxSpeed * GameManager.Instance.WorldSpeed;
 
   private bool _isTargetDone = false;
   private float _targetTimer;
@@ -10,18 +19,47 @@ public class Kamikaze : AbstractTouchTrap
 
   private void Update()
   {
-    if (_isTargetDone || _spaceship == null)
-      return;
+    if (_spaceship == null) return;
 
-    Vector2 shipPosition = _spaceship.transform.position;
-    transform.position = new Vector2(transform.position.x, shipPosition.y);
+    if (!_isTargetDone)
+    {
+      if (!_warningEffectPrefab.activeSelf)
+      {
+        _warningEffectPrefab.SetActive(true);
+      }
+
+      HandleTarget();
+    }
+    else
+    {
+      HandleAttack();
+    }
+  }
+
+  private void HandleTarget()
+  {
+    Vector2 directionToTarget = _spaceship.transform.position - transform.position;
+    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, directionToTarget.normalized.y * TargetSpeed);
 
     _targetTimer -= Time.deltaTime;
-    if (_targetTimer > 0f) return;
+    if (_targetTimer <= 0f)
+    {
+      LockTarget();
+    }
+  }
 
-    Vector2 direction = (shipPosition - (Vector2)transform.position).normalized;
-    _rb.linearVelocity = direction * _maxSpeed;
+  private void LockTarget()
+  {
     _isTargetDone = true;
+    _warningEffectPrefab.SetActive(false);
+
+    if (AudioManager.Instance != null)
+      AudioManager.Instance.PlaySFX(AudioSFXEnum.KamikazeEngine);
+  }
+
+  private void HandleAttack()
+  {
+    _rb.linearVelocity = new Vector2(-MaxSpeed, 0f);
   }
 
   public override void OnActivate()
@@ -29,24 +67,22 @@ public class Kamikaze : AbstractTouchTrap
     _isTargetDone = false;
     _targetTimer = _timeToTarget;
 
+    if (_spaceship == null)
+      _spaceship = GameObject.FindGameObjectWithTag("Player");
+
+    if (_warningEffectPrefab != null)
+      _warningEffectPrefab.SetActive(true);
+
     if (_rb != null)
     {
       _rb.linearVelocity = Vector2.zero;
       _rb.angularVelocity = 0f;
-    }
-
-    if (_spaceship == null)
-    {
-      _spaceship = GameObject.FindGameObjectWithTag("Player");
     }
   }
 
   public override void OnDeactivate()
   {
-    if (_rb != null)
-    {
-      _rb.linearVelocity = Vector2.zero;
-      _rb.angularVelocity = 0f;
-    }
+    if (_rb != null) _rb.linearVelocity = Vector2.zero;
+    _warningEffectPrefab?.SetActive(false);
   }
 }

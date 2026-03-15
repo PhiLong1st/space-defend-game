@@ -26,7 +26,8 @@ public class GameUIManager : MonoBehaviour
 
   private void Update()
   {
-    _scoreText.text = $"{GameManager.Instance.Score:00000}";
+    int score = Mathf.RoundToInt(GameManager.Instance.Score);
+    _scoreText.text = $"{score:00000}";
     _bestScoreText.text = $"BEST: {PlayerPrefs.GetInt("BestScore", 0):00000}";
   }
 

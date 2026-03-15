@@ -13,9 +13,15 @@ public class ParallaxBackground : MonoBehaviour
     _imageWidth = _image.sprite.texture.width / _image.sprite.pixelsPerUnit;
   }
 
+  private void Start()
+  {
+    if (AudioManager.Instance != null)
+      AudioManager.Instance.PlayMusic(AudioMusicEnum.InGame);
+  }
+
   private void Update()
   {
-    float moveX = moveSpeed * GameManager.Instance.WorldSpeed * Time.deltaTime;
+    float moveX = moveSpeed * 2f * GameManager.Instance.WorldSpeed * Time.deltaTime;
     transform.position += new Vector3(moveX, 0);
 
     if (Mathf.Abs(transform.position.x) - _imageWidth > 0)

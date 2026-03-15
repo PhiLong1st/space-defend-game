@@ -13,7 +13,7 @@ public class PrefabData
 {
   public PrefabType type;
   public GameObject prefab;
-  public int poolSize = 10;
+  public int poolSize = 20;
 }
 
 public class PrefabsManager : MonoBehaviour
@@ -21,7 +21,7 @@ public class PrefabsManager : MonoBehaviour
   public static PrefabsManager Instance { get; private set; }
   [SerializeField] private List<PrefabData> _prefabConfigs;
 
-  private Dictionary<PrefabType, Queue<GameObject>> _pools = new Dictionary<PrefabType, Queue<GameObject>>();
+  private Dictionary<PrefabType, Pooler> _pools = new Dictionary<PrefabType, Pooler>();
 
   private void Awake()
   {
@@ -45,13 +45,12 @@ public class PrefabsManager : MonoBehaviour
 
       if (!_pools.ContainsKey(config.type))
       {
-        var objectPool = new Queue<GameObject>();
+        var objectPool = new Pooler(transform, config.prefab, config.poolSize);
 
         for (int i = 0; i < config.poolSize; i++)
         {
           GameObject obj = Instantiate(config.prefab, transform);
           obj.SetActive(false);
-          objectPool.Enqueue(obj);
         }
 
         _pools.Add(config.type, objectPool);
@@ -67,9 +66,7 @@ public class PrefabsManager : MonoBehaviour
       return null;
     }
 
-    GameObject objectToSpawn = _pools[type].Dequeue();
-    objectToSpawn.SetActive(true);
-    _pools[type].Enqueue(objectToSpawn);
+    GameObject objectToSpawn = _pools[type].GetPooledObject();
     return objectToSpawn;
   }
 }
