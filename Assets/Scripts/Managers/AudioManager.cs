@@ -36,10 +36,8 @@ public struct SoundMusicData
   public AudioClip clip;
 }
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : AbstractSingleton<AudioManager>
 {
-  public static AudioManager Instance { get; private set; }
-
   [SerializeField] private AudioSource musicSource;
   [SerializeField] private AudioSource sfxSource;
 
@@ -55,38 +53,26 @@ public class AudioManager : MonoBehaviour
   private Dictionary<AudioSFXEnum, SoundSFXData> audioSFXDictionary;
   private Dictionary<AudioMusicEnum, SoundMusicData> audioMusicDictionary;
 
-  private void Awake()
-  {
-    if (Instance == null)
-    {
-      Instance = this;
-      DontDestroyOnLoad(gameObject);
-      InitializeAudioManager();
-      SetMusicVolume(musicVolume);
-      SetSFXVolume(sfxVolume);
-    }
-    else
-    {
-      Destroy(gameObject);
-    }
-  }
-
-  private void InitializeAudioManager()
+  private void Start()
   {
     audioSFXDictionary = new Dictionary<AudioSFXEnum, SoundSFXData>();
     audioMusicDictionary = new Dictionary<AudioMusicEnum, SoundMusicData>();
 
     foreach (var soundData in audioSFXClips)
     {
-      if (soundData.clip != null)
-        audioSFXDictionary[soundData.key] = soundData;
+      if (soundData.clip == null) continue;
+      audioSFXDictionary[soundData.key] = soundData;
     }
 
     foreach (var soundData in audioMusicClips)
     {
-      if (soundData.clip != null)
-        audioMusicDictionary[soundData.key] = soundData;
+      if (soundData.clip == null) continue;
+      audioMusicDictionary[soundData.key] = soundData;
     }
+
+
+    SetMusicVolume(musicVolume);
+    SetSFXVolume(sfxVolume);
   }
 
   public void PlayMusic(AudioMusicEnum key)

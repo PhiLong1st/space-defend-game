@@ -2,22 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GameUIManager : MonoBehaviour
+public class GameUIManager : AbstractSingleton<GameUIManager>
 {
-  public static GameUIManager Instance { get; private set; }
-
-  private void Awake()
-  {
-    if (Instance != null)
-    {
-      Destroy(gameObject);
-    }
-    else
-    {
-      Instance = this;
-    }
-  }
-
   [SerializeField] private GameObject _pausePanel;
   [SerializeField] private GameObject _lostPanel;
 

@@ -16,38 +16,19 @@ public class PrefabData
   public int poolSize = GameData.DefaultPrefabPoolSize;
 }
 
-public class PrefabsManager : MonoBehaviour
+public class PrefabsManager : AbstractSingleton<PrefabsManager>
 {
-  public static PrefabsManager Instance { get; private set; }
   [SerializeField] private List<PrefabData> _prefabConfigs;
 
-  private Dictionary<PrefabType, Pooler> _pools = new Dictionary<PrefabType, Pooler>();
+  private readonly Dictionary<PrefabType, Pooler> _pools = new Dictionary<PrefabType, Pooler>();
 
-  private void Awake()
-  {
-    if (Instance != null && Instance != this)
-    {
-      Destroy(gameObject);
-    }
-    else
-    {
-      Instance = this;
-    }
-
-    InitializePools();
-  }
-
-  private void InitializePools()
+  private void Start()
   {
     foreach (var config in _prefabConfigs)
     {
-      if (config.prefab == null) continue;
-
-      if (!_pools.ContainsKey(config.type))
-      {
-        var objectPool = new Pooler(transform, config.prefab, config.poolSize);
-        _pools.Add(config.type, objectPool);
-      }
+      if (config.prefab == null || _pools.ContainsKey(config.type)) continue;
+      var objectPool = new Pooler(transform, config.prefab, config.poolSize);
+      _pools.Add(config.type, objectPool);
     }
   }
 

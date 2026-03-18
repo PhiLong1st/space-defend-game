@@ -2,9 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : AbstractSingleton<GameManager>
 {
-  public static GameManager Instance;
   public bool isPausing = false;
 
   private float _worldSpeed = GameData.InitialWorldSpeed;
@@ -14,18 +13,6 @@ public class GameManager : MonoBehaviour
   public float Score => _score;
 
   private float _scoreMilestone = GameData.InitialScoreMilestone;
-
-  void Awake()
-  {
-    if (Instance != null)
-    {
-      Destroy(gameObject);
-    }
-    else
-    {
-      Instance = this;
-    }
-  }
 
   private void Start()
   {
@@ -72,7 +59,7 @@ public class GameManager : MonoBehaviour
     GameUIManager.Instance.ShowLostPanel();
     AudioManager.Instance.PlaySFX(AudioSFXEnum.GameOver);
 
-    DataManager.Instance.BestScore = Mathf.RoundToInt(Score);
+    SaveManager.Instance.BestScore = Mathf.RoundToInt(Score);
   }
 
   public void Restart()
