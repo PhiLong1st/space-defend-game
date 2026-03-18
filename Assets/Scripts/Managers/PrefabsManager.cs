@@ -20,14 +20,14 @@ public class PrefabsManager : AbstractSingleton<PrefabsManager>
 {
   [SerializeField] private List<PrefabData> _prefabConfigs;
 
-  private readonly Dictionary<PrefabType, Pooler> _pools = new Dictionary<PrefabType, Pooler>();
+  private readonly Dictionary<PrefabType, ObjectPooling> _pools = new Dictionary<PrefabType, ObjectPooling>();
 
   private void Start()
   {
     foreach (var config in _prefabConfigs)
     {
       if (config.prefab == null || _pools.ContainsKey(config.type)) continue;
-      var objectPool = new Pooler(transform, config.prefab, config.poolSize);
+      var objectPool = new ObjectPooling(transform, config.prefab, config.poolSize);
       _pools.Add(config.type, objectPool);
     }
   }

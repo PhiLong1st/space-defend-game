@@ -1,14 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class Pooler
+public class ObjectPooling
 {
   private int _poolSize = GameData.DefaultPoolSize;
   private List<GameObject> pool;
   private Transform _transform;
   private GameObject _prefab;
 
-  public Pooler(Transform transform, GameObject prefab, int size)
+  public ObjectPooling(Transform transform, GameObject prefab, int size)
   {
     _transform = transform;
     _prefab = prefab;
