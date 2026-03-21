@@ -5,7 +5,7 @@ using UnityEngine;
 public class KamikazeTrap : MonoBehaviour
 {
   [SerializeField] int _damage = 50;
-  [SerializeField] int _health = 50;
+  [SerializeField] int _health = 5;
   [SerializeField] float _speed = 2f;
 
   public int Damage => _damage;

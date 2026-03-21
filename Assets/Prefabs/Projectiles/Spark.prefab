@@ -213,7 +213,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.6310139, y: -0.00892226}
+  m_Offset: {x: 0.654742, y: -0.010504153}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -223,7 +223,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.08901882, y: 0.10686328}
+  m_Size: {x: 0.13647509, y: 0.1036995}
   m_EdgeRadius: 0
 --- !u!114 &9122594039965512801
 MonoBehaviour:
@@ -253,9 +253,6 @@ MonoBehaviour:
   _launchEffect: {fileID: 1958639834358981692}
   _flightEffect: {fileID: 4597572057212748187}
   _explosionEffect: {fileID: 5503692560015079878}
-  OnAnimationComplete:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4597572057212748187
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +394,7 @@ Transform:
   m_GameObject: {fileID: 5503692560015079878}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.7, y: 0, z: 0}
+  m_LocalPosition: {x: 0.65, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

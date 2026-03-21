@@ -18,7 +18,6 @@ public class KamikazeTrapController : MonoBehaviour, IDamageable
 
     _stateMachine.AddState(targetingState);
     _stateMachine.AddState(attackState);
-
     _stateMachine.Initialize(targetingState);
   }
 
@@ -59,7 +58,7 @@ public class KamikazeTrapController : MonoBehaviour, IDamageable
   {
     if (other.gameObject.CompareTag("Player"))
     {
-      gameObject.SetActive(false);
+      other.GetComponent<IDamageable>()?.TakeDamage(_kamikazeTrap.Damage);
     }
   }
 }
