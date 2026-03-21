@@ -2,29 +2,42 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class SparkView : MonoBehaviour
 {
-  private Animator _animator;
+  [SerializeField] private GameObject _launchEffect;
 
-  public Action OnExplosionFinished;
+  [SerializeField] private GameObject _flightEffect;
 
-  private void Awake()
-  {
-    _animator = GetComponent<Animator>();
-  }
-
-  public void PlayReadyEffect()
-  {
-    // Implementation for playing ready effect
-  }
+  [SerializeField] private GameObject _explosionEffect;
 
   public void PlayLaunchEffect()
   {
-    // Implementation for playing launch effect
+    _launchEffect?.SetActive(true);
+    _flightEffect?.SetActive(false);
+    _explosionEffect?.SetActive(false);
+    // if (AudioManager.Instance != null) AudioManager.Instance.PlaySound("SparkLaunch");
   }
 
-  public void PlayExplosionEffect() => _animator.SetTrigger("explode");
+  public void PlayFlightEffect()
+  {
+    _launchEffect?.SetActive(false);
+    _flightEffect?.SetActive(true);
+    _explosionEffect?.SetActive(false);
+  }
 
-  public void OnExplosionAnimationComplete() => OnExplosionFinished?.Invoke();
+  public void PlayExplosionEffect()
+  {
+    _launchEffect?.SetActive(false);
+    _flightEffect?.SetActive(false);
+    _explosionEffect?.SetActive(true);
+  }
+
+  public void Reset()
+  {
+    _launchEffect?.SetActive(false);
+    _flightEffect?.SetActive(false);
+    _explosionEffect?.SetActive(false);
+  }
 }

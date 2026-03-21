@@ -4,6 +4,6 @@ using UnityEngine;
 public class ProjectileConfig : ScriptableObject
 {
   public float Speed;
-  public float Damage;
+  public int Damage;
   public float TimeCooldown;
 }

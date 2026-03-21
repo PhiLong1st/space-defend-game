@@ -1,6 +1,6 @@
-public interface IProjectileStrategy 
+public interface IProjectileStrategy
 {
-  void Ready();
   void Launch();
+  void Flight();
   void Explode();
 }

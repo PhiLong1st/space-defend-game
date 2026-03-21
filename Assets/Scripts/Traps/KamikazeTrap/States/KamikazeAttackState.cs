@@ -15,7 +15,6 @@ public class KamikazeAttackState : IState
   public void Enter()
   {
     if (AudioManager.Instance != null) AudioManager.Instance.PlaySFX(AudioSFXEnum.KamikazeEngine);
-    Debug.Log("KamikazeTrap entered Attack State");
   }
 
   public void Execute()
@@ -25,6 +24,5 @@ public class KamikazeAttackState : IState
 
   public void Exit()
   {
-    Debug.Log("KamikazeTrap exited Attack State");
   }
 }

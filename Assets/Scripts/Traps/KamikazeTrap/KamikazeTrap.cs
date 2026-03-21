@@ -12,15 +12,9 @@ public class KamikazeTrap : MonoBehaviour
 
   public float Speed => _speed;
 
-  public void TakeDamage(int damage)
-  {
-    _health -= damage;
-  }
+  public void TakeDamage(int damage) => _health = Mathf.Max(_health - damage, 0);
 
-  public bool IsDestroyed()
-  {
-    return _health <= 0;
-  }
+  public bool IsDestroyed() => _health <= 0;
 
   public void Explode()
   {

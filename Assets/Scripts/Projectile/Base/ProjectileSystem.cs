@@ -27,12 +27,7 @@ public class ProjectileSystem
     foreach (var factory in _factories)
     {
       factory.ReduceCooldown(Time.deltaTime);
-
-      if (factory.IsReady)
-      {
-        factory.Spawn();
-        Debug.Log($"Spawning projectile from factory: {factory.GetType().Name}");
-      }
+      if (factory.IsReady) factory.Spawn();
     }
   }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class KamikazeTrapController : MonoBehaviour
+public class KamikazeTrapController : MonoBehaviour, IDamageable
 {
   [SerializeField] private KamikazeTrap _kamikazeTrap;
   [SerializeField] private KamikazeTrapView _kamikazeTrapView;
