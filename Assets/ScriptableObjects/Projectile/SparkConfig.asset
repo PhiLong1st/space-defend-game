@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2865717c6c194334ea126330f16d9e06, type: 3}
-  m_Name: Spaceship1_Shot
+  m_Script: {fileID: 11500000, guid: 19047e4db39cbc94da7174c7cd7a1b7b, type: 3}
+  m_Name: SparkConfig
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileConfig
-  speed: 2
-  damage: 5
+  Speed: 5
+  Damage: 5
+  TimeCooldown: 2

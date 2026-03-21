@@ -9,6 +9,9 @@ public class SpaceshipController : MonoBehaviour
 
   [SerializeField] private Spaceship _spaceship;
   [SerializeField] private SpaceshipView _spaceshipView;
+  [SerializeField] private GameObject _attachPoint;
+
+  private ProjectileSystem _projectileSystem;
 
   private void Awake()
   {
@@ -25,33 +28,27 @@ public class SpaceshipController : MonoBehaviour
 
   private void Start()
   {
-    _spaceshipView.OnExplosionFinished += GameManager.Instance.GameOver;
+    _projectileSystem = new ProjectileSystem();
 
+    var sparkFactory = new SparkFactory(_attachPoint, 0.5f);
+    _projectileSystem.AddProjectile(sparkFactory);
+
+    _spaceshipView.OnExplosionFinished += GameManager.Instance.GameOver;
   }
 
-  void Update()
+  private void Update()
   {
+    _projectileSystem.Update();
     HandleMovement();
   }
 
   public void HandleMovement()
   {
-    if (_spaceship.IsDestroyed)
-    {
-      return;
-    }
-
-    if (Input.GetKey(KeyCode.W))
-    {
-      var direction = transform.up;
-      _spaceship.Move(direction);
-    }
-
-    if (Input.GetKey(KeyCode.S))
-    {
-      var direction = -transform.up;
-      _spaceship.Move(direction);
-    }
+    if (_spaceship.IsDestroyed) return;
+    if (Input.GetKey(KeyCode.W)) _spaceship.Move(Vector2.up);
+    if (Input.GetKey(KeyCode.A)) _spaceship.Move(Vector2.left);
+    if (Input.GetKey(KeyCode.S)) _spaceship.Move(Vector2.down);
+    if (Input.GetKey(KeyCode.D)) _spaceship.Move(Vector2.right);
   }
 
   private void OnCollisionEnter2D(Collision2D collision)

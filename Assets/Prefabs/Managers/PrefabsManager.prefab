@@ -46,8 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PrefabsManager
   _prefabConfigs:
   - type: 0
-    prefab: {fileID: 6735881792893774293, guid: 965bec1d8858c2840b4cc75f3e86b315, type: 3}
+    prefab: {fileID: 1884208127204663299, guid: 20cefa999f7d97d4c890dc8ba4184810, type: 3}
     poolSize: 10
   - type: 1
     prefab: {fileID: 1311709943986456859, guid: dd1a7ba358ceb074e80aa4724d33e9a0, type: 3}
+    poolSize: 10
+  - type: 3
+    prefab: {fileID: 2290187145381438867, guid: dcfec07278be4be4bb9d5a17f1adbc6c, type: 3}
     poolSize: 10

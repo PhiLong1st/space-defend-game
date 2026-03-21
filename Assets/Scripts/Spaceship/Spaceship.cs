@@ -18,8 +18,7 @@ public class Spaceship : MonoBehaviour
 
   public void Move(Vector2 direction)
   {
-    Vector2 newPosition = (Vector2)transform.position + direction.normalized * CurrentMovementSpeed * Time.deltaTime;
-    transform.position = newPosition;
+    transform.Translate(direction * Time.deltaTime * CurrentMovementSpeed);
   }
 
   public void HandleDestroy()

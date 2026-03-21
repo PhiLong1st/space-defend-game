@@ -6,6 +6,7 @@ public enum PrefabType
   KamikazeTrap,
   MeteorTrap,
   WarningEffect,
+  SparkProjectile,
 }
 
 [System.Serializable]
