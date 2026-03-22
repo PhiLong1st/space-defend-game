@@ -8,6 +8,9 @@ public enum AudioSFXEnum
   Explosion,
   GameOver,
   KamikazeEngine,
+  SparkLaunch,
+  MeteorHit,
+  MeteorExplosion,
 }
 
 public enum AudioMusicEnum

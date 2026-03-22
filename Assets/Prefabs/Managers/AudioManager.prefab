@@ -57,11 +57,17 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 9fe0ba8c898bd05479ce691800c0c940, type: 3}
   - key: 1
     clip: {fileID: 8300000, guid: e6feece269e55d94e9298ea04121b729, type: 3}
+  - key: 4
+    clip: {fileID: 8300000, guid: 52c52067124ca5a4d97876df525ca351, type: 3}
+  - key: 5
+    clip: {fileID: 8300000, guid: 84d141e9bce20ba41bf510c980dc7fab, type: 3}
+  - key: 6
+    clip: {fileID: 8300000, guid: e6feece269e55d94e9298ea04121b729, type: 3}
   audioMusicClips:
   - key: 0
     clip: {fileID: 8300000, guid: 38287210f45fe2743979dcc89daeff04, type: 3}
   - key: 1
-    clip: {fileID: 8300000, guid: adb95dc9a7d1758489ec2b347000f359, type: 3}
+    clip: {fileID: 8300000, guid: 7d836123f5c4a6d44851d2eb2130e408, type: 3}
   musicVolume: 1
   sfxVolume: 1
 --- !u!82 &6874813348683897905

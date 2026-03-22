@@ -38,14 +38,13 @@ public class MeteorController : MonoBehaviour, IDamageable
 
   private void OnEnable()
   {
-    _shouldWander = false;
+    Reset();
+  }
 
-    _model.Reset();
-    EnableDetector();
-
+  private void Start()
+  {
     transform.localScale = _model.Scale;
     _rb.linearVelocity = Vector2.left * _model.Speed;
-
     _wanderAngle = Random.Range(0f, 360f);
   }
 
@@ -93,10 +92,7 @@ public class MeteorController : MonoBehaviour, IDamageable
 
     _rb.AddForce(steering, ForceMode2D.Force);
 
-    if (_rb.linearVelocity.magnitude > _model.Speed)
-    {
-      _rb.linearVelocity = _rb.linearVelocity.normalized * _model.Speed;
-    }
+    if (_rb.linearVelocity.magnitude > _model.Speed) _rb.linearVelocity = _rb.linearVelocity.normalized * _model.Speed;
 
     _circleCenterDebug = circleCenter;
     _targetPointDebug = targetPoint;
@@ -120,6 +116,14 @@ public class MeteorController : MonoBehaviour, IDamageable
   }
   #endregion
 
+  public void Reset()
+  {
+    _model.Reset();
+    _view.Reset();
+
+    _shouldWander = false;
+    EnableDetector();
+  }
   private void OnDrawGizmos()
   {
     if (!Application.isPlaying) return;

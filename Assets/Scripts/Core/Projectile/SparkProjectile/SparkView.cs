@@ -17,7 +17,12 @@ public class SparkView : MonoBehaviour
     _launchEffect?.SetActive(true);
     _flightEffect?.SetActive(false);
     _explosionEffect?.SetActive(false);
-    // if (AudioManager.Instance != null) AudioManager.Instance.PlaySound("SparkLaunch");
+
+    if (AudioManager.Instance != null)
+    {
+      var randomPitch = UnityEngine.Random.Range(0.05f, 0.07f);
+      AudioManager.Instance.PlaySFX(AudioSFXEnum.SparkLaunch, randomPitch);
+    }
   }
 
   public void PlayFlightEffect()
