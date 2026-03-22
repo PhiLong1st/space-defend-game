@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class KamikazeTrap
 {
-  private int _damage;
-  private int _health;
-  private float _speed;
+  public int Damage { get; private set; }
 
-  public int Damage => _damage;
-  public int Health => _health;
-  public float Speed => _speed;
+  public int Health { get; private set; }
 
-  public KamikazeTrap()
+  public float Speed { get; private set; }
+
+  public float WarningSpeed { get; private set; }
+
+  public KamikazeTrap(KamikazeTrapConfig config)
   {
-    _damage = KamikazeTrapConstants.Damage;
-    _health = KamikazeTrapConstants.Health;
-    _speed = KamikazeTrapConstants.Speed;
+    Damage = config.Damage;
+    Health = config.Health;
+    Speed = config.Speed;
+    WarningSpeed = config.WarningSpeed;
   }
 
-  public void TakeDamage(int damage) => _health = Mathf.Max(_health - damage, 0);
+  public void TakeDamage(int damage) => Health = Mathf.Max(Health - damage, 0);
 
-  public bool IsDestroyed() => _health <= 0;
+  public bool IsDestroyed() => Health <= 0;
 }

@@ -19,7 +19,7 @@ public class KamikazeAttackState : IState
 
   public void Execute()
   {
-    _controller.Move(Vector2.left);
+    _controller.Move(Vector2.left * _controller.Speed * Time.deltaTime);
   }
 
   public void Exit()

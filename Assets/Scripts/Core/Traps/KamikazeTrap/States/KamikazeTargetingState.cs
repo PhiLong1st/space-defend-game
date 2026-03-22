@@ -9,8 +9,6 @@ public class KamikazeTargetingState : IState
   private float _targetTimer;
   private float _thresholdY = 0.5f;
 
-  private GameObject _spaceship;
-
   public KamikazeTargetingState(KamikazeTrapController controller, StateMachine stateMachine)
   {
     _controller = controller;
@@ -19,8 +17,6 @@ public class KamikazeTargetingState : IState
 
   public void Enter()
   {
-    if (_spaceship == null) _spaceship = GameObject.FindGameObjectWithTag("Player");
-
     _controller.StartWarning();
     _targetTimer = GameData.KamikazeTimeToTarget;
   }
@@ -30,10 +26,12 @@ public class KamikazeTargetingState : IState
     _targetTimer -= Time.deltaTime;
     if (_targetTimer <= 0f) _stateMachine.ChangeState<KamikazeAttackState>();
 
-    if (Mathf.Abs(_spaceship.transform.position.y - _controller.transform.position.y) > _thresholdY)
+    var spaceshipPosition = SpaceshipController.Instance.transform.position;
+
+    if (Mathf.Abs(spaceshipPosition.y - _controller.transform.position.y) > _thresholdY)
     {
-      Vector2 direction = (_spaceship.transform.position.y - _controller.transform.position.y > 0) ? Vector2.up : Vector2.down;
-      _controller.Move(direction);
+      Vector2 direction = (spaceshipPosition.y - _controller.transform.position.y > 0) ? Vector2.up : Vector2.down;
+      _controller.Move(direction * _controller.WarningSpeed * Time.deltaTime);
     }
   }
 
