@@ -1,47 +1,75 @@
 using UnityEngine;
 
-public class Meteor : MonoBehaviour, IDamageable
+public class MeteorController : MonoBehaviour, IDamageable
 {
+  [Header("Meteor Properties")]
+  [SerializeField] private MeteorConfig _config;
+
+  private Meteor _model;
+  private MeteorView _view;
+
   [Header("Wander Settings")]
   [SerializeField] private float _wanderCircleDistance = 2f;
   [SerializeField] private float _wanderCircleRadius = 1f;
   [SerializeField] private float _wanderAngleChange = 15f;
   [SerializeField] private float _maxSteeringForce = 0.5f;
-  [SerializeField] private float _maxSpeed = GameData.DefaultTrapMaxSpeed;
 
   private float _wanderAngle;
-
   private Vector2 _circleCenterDebug;
   private Vector2 _targetPointDebug;
-
   private bool _shouldWander = false;
+
   private Rigidbody2D _rb;
+  private CapsuleCollider2D _collider;
 
   private void Awake()
   {
     _rb = GetComponent<Rigidbody2D>();
+    _collider = GetComponent<CapsuleCollider2D>();
+
+    _model = new Meteor(_config);
+
+    _view = GetComponentInChildren<MeteorView>();
+    _view.OnExplosionComplete += Despawn;
   }
+
+  public int HealthPercentage => _model.HealthPercentage;
+  public bool IsDestroyed() => _model.IsDestroyed();
 
   private void OnEnable()
   {
     _shouldWander = false;
 
-    float pushX = Random.Range(GameData.MeteorPushXMin, GameData.MeteorPushXMax);
-    _rb.linearVelocity = new Vector2(pushX, 0f).normalized * _maxSpeed;
+    _model.Reset();
+    EnableDetector();
 
-    float randomScale = Random.Range(GameData.MeteorScaleMin, GameData.MeteorScaleMax);
-    transform.localScale = new Vector2(randomScale, randomScale);
+    transform.localScale = _model.Scale;
+    _rb.linearVelocity = Vector2.left * _model.Speed;
+
     _wanderAngle = Random.Range(0f, 360f);
   }
 
   private void FixedUpdate()
   {
-    if (_shouldWander)
+    if (_shouldWander) ApplyWanderBehavior();
+  }
+
+  private void Update()
+  {
+    if (IsDestroyed())
     {
-      ApplyWanderBehavior();
+      Stop();
+      DisableDetector();
     }
   }
 
+  public void TakeDamage(int damage)
+  {
+    _model.TakeDamage(damage);
+    _view.PlayTakeDamageAnimation(damage);
+  }
+
+  #region Physics
   private void ApplyWanderBehavior()
   {
     Vector2 velocityDir = _rb.linearVelocity.normalized;
@@ -58,42 +86,39 @@ public class Meteor : MonoBehaviour, IDamageable
     Vector2 displacement = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle)) * _wanderCircleRadius;
     Vector2 targetPoint = circleCenter + displacement;
 
-    Vector2 desiredVelocity = (targetPoint - (Vector2)transform.position).normalized * _maxSpeed;
+    Vector2 desiredVelocity = (targetPoint - (Vector2)transform.position).normalized * _model.Speed;
     Vector2 steering = desiredVelocity - _rb.linearVelocity;
 
     steering = Vector2.ClampMagnitude(steering, _maxSteeringForce);
 
     _rb.AddForce(steering, ForceMode2D.Force);
 
-    if (_rb.linearVelocity.magnitude > _maxSpeed)
+    if (_rb.linearVelocity.magnitude > _model.Speed)
     {
-      _rb.linearVelocity = _rb.linearVelocity.normalized * _maxSpeed;
+      _rb.linearVelocity = _rb.linearVelocity.normalized * _model.Speed;
     }
 
     _circleCenterDebug = circleCenter;
     _targetPointDebug = targetPoint;
   }
 
-  private void OnDisable()
-  {
-    _shouldWander = false;
+  private void EnableDetector() => _collider.enabled = true;
 
-    if (_rb != null)
-    {
-      _rb.linearVelocity = Vector2.zero;
-      _rb.angularVelocity = 0f;
-    }
+  private void DisableDetector() => _collider.enabled = false;
+
+  private void Stop()
+  {
+    _rb.linearVelocity = Vector2.zero;
+    _rb.angularVelocity = 0f;
   }
+
+  private void Despawn() => gameObject.SetActive(false);
 
   private void OnTriggerEnter2D(Collider2D other)
   {
     if (other.CompareTag("WanderZone")) _shouldWander = true;
   }
-
-  public void TakeDamage(int damage)
-  {
-    GetComponent<DamageFeedback>()?.PlayHitFlash(damage);
-  }
+  #endregion
 
   private void OnDrawGizmos()
   {

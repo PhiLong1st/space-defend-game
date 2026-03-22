@@ -8,8 +8,8 @@ public class KamikazeTrapController : MonoBehaviour, IDamageable
   private StateMachine _stateMachine;
 
   public float Speed => _model.Speed * GameManager.Instance.WorldSpeed;
-
   public float WarningSpeed => _model.WarningSpeed * GameManager.Instance.WorldSpeed;
+  public int HealthPercentage => _model.HealthPercentage;
 
   private void OnEnable()
   {
