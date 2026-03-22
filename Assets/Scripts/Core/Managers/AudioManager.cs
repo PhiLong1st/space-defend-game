@@ -116,6 +116,17 @@ public class AudioManager : AbstractSingleton<AudioManager>
     sfxSource.PlayOneShot(soundData.clip, customVolume);
   }
 
+  public void PlaySFX(AudioClip clip, float customVolume)
+  {
+    if (clip == null)
+    {
+      Debug.LogWarning("AudioClip is null in PlaySFX");
+      return;
+    }
+
+    sfxSource.PlayOneShot(clip, customVolume);
+  }
+
   public void StopMusic()
   {
     if (musicSource != null && musicSource.isPlaying)

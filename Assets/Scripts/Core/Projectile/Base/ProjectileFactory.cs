@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public abstract class ProjectileFactory
 {
@@ -23,13 +24,16 @@ public abstract class ProjectileFactory
 
   public void Spawn()
   {
-    var projectile = CreateProjectile();
+    var projectiles = CreateProjectile();
 
-    projectile.SetActive(true);
-    projectile.transform.position = _attachPoint.transform.position;
+    foreach (var projectile in projectiles)
+    {
+      projectile.SetActive(true);
+      projectile.transform.position = _attachPoint.transform.position;
+    }
 
     ResetCooldown();
   }
 
-  public abstract GameObject CreateProjectile();
+  public abstract List<GameObject> CreateProjectile();
 }

@@ -4,13 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 
-public class SparkView : MonoBehaviour
+public class LinearProjectileView : MonoBehaviour
 {
+  [Header("Visual Effects")]
   [SerializeField] private GameObject _launchEffect;
 
   [SerializeField] private GameObject _flightEffect;
 
   [SerializeField] private GameObject _explosionEffect;
+
+  [Header("Audio")]
+  [SerializeField] private AudioClip _launchSFX;
 
   public void PlayLaunchEffect()
   {
@@ -18,10 +22,10 @@ public class SparkView : MonoBehaviour
     _flightEffect?.SetActive(false);
     _explosionEffect?.SetActive(false);
 
-    if (AudioManager.Instance != null)
+    if (AudioManager.Instance != null && _launchSFX != null)
     {
       var randomPitch = UnityEngine.Random.Range(0.05f, 0.07f);
-      AudioManager.Instance.PlaySFX(AudioSFXEnum.SparkLaunch, randomPitch);
+      AudioManager.Instance.PlaySFX(_launchSFX, randomPitch);
     }
   }
 

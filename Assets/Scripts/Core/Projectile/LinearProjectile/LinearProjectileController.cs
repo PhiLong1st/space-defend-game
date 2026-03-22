@@ -4,20 +4,22 @@ using System.Collections;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider2D))]
-public class SparkController : MonoBehaviour, IProjectileStrategy
+public class LinearProjectileController : MonoBehaviour, IProjectileStrategy
 {
-  [SerializeField] private ProjectileConfig _config;
+  [SerializeField] private LinearProjectileConfig _config;
   [SerializeField] private readonly float _timeLaunch = 0.1f;
   [SerializeField] private readonly float _timeExplode = 0.3f;
-  private Spark _model;
-  private SparkView _view;
+  private LinearProjectile _model;
+  private LinearProjectileView _view;
   private Collider2D _collider;
+
+  private Vector2 _direction;
 
   #region Unity Callbacks
   private void Awake()
   {
-    _model = new Spark(_config);
-    _view = GetComponentInChildren<SparkView>();
+    _model = new LinearProjectile(_config);
+    _view = GetComponentInChildren<LinearProjectileView>();
     _collider = GetComponent<Collider2D>();
   }
 
@@ -27,7 +29,11 @@ public class SparkController : MonoBehaviour, IProjectileStrategy
     _view.Reset();
 
     EnableDetector();
-    Launch();
+  }
+
+  private void Update()
+  {
+    if (!_model.IsLaunched) Launch();
   }
 
   private void OnDisable()
@@ -46,6 +52,7 @@ public class SparkController : MonoBehaviour, IProjectileStrategy
   public void Flight()
   {
     if (!_model.IsLaunched) return;
+
     _view.PlayFlightEffect();
     StartCoroutine(FlyingRoutine());
   }
@@ -59,6 +66,8 @@ public class SparkController : MonoBehaviour, IProjectileStrategy
 
     StartCoroutine(ExplodeRoutine());
   }
+
+  public void SetDirection(Vector2 direction) => _direction = direction.normalized;
   #endregion
 
   #region Routines
@@ -73,7 +82,8 @@ public class SparkController : MonoBehaviour, IProjectileStrategy
   {
     while (_model.IsLaunched && !_model.HasExploded)
     {
-      transform.Translate(Vector2.right * _model.Speed * Time.deltaTime);
+      Vector2 direction = (_direction == Vector2.zero) ? Vector2.right : _direction;
+      transform.Translate(direction * _model.Speed * Time.deltaTime);
       yield return null;
     }
   }
