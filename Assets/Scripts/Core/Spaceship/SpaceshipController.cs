@@ -39,7 +39,7 @@ public class SpaceshipController : MonoBehaviour, ISubject<Spaceship>, IDamageab
     NotifyObservers(_model);
 
     _projectileSystem = new ProjectileSystem();
-    var sparkFactory = new SparkFactory(_attachPoint, 0.5f);
+    var sparkFactory = new SparkFactory(_attachPoint, 0.15f);
     _projectileSystem.AddProjectile(sparkFactory);
 
     _view.OnExplosionFinished += GameManager.Instance.GameOver;
