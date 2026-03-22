@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class KamikazeTrapController : MonoBehaviour, IDamageable
 {
-  [SerializeField] private KamikazeTrap _kamikazeTrap;
-  [SerializeField] private KamikazeTrapView _kamikazeTrapView;
-
+  private KamikazeTrapView _view;
+  private KamikazeTrap _model;
   private StateMachine _stateMachine;
 
-  public float Speed => _kamikazeTrap.Speed * GameManager.Instance.WorldSpeed;
+  public float Speed => _model.Speed * GameManager.Instance.WorldSpeed;
 
   private void OnEnable()
   {
+    _model = new KamikazeTrap();
     _stateMachine = new StateMachine();
+    _view = GetComponentInChildren<KamikazeTrapView>();
 
     IState targetingState = new KamikazeTargetingState(this, _stateMachine);
     IState attackState = new KamikazeAttackState(this, _stateMachine);
@@ -21,9 +22,9 @@ public class KamikazeTrapController : MonoBehaviour, IDamageable
     _stateMachine.Initialize(targetingState);
   }
 
-  private void OnDisable()
+  private void Start()
   {
-    _stateMachine = null;
+    _stateMachine.Start();
   }
 
   private void Update()
@@ -31,12 +32,24 @@ public class KamikazeTrapController : MonoBehaviour, IDamageable
     _stateMachine.Update();
   }
 
+  private void OnDisable()
+  {
+    _stateMachine = null;
+    _model = null;
+  }
+
   public void TakeDamage(int damage)
   {
-    _kamikazeTrap.TakeDamage(damage);
-    _kamikazeTrapView.PlayTakeDamageAnimation();
+    _model.TakeDamage(damage);
 
-    if (_kamikazeTrap.IsDestroyed()) Explode();
+    if (_model.IsDestroyed())
+    {
+      _view.PlayExplodeAnimation();
+    }
+    else
+    {
+      _view.PlayTakeDamageAnimation(damage);
+    }
   }
 
   public void Move(Vector2 direction)
@@ -44,21 +57,12 @@ public class KamikazeTrapController : MonoBehaviour, IDamageable
     transform.Translate(direction * Time.deltaTime * Speed);
   }
 
-  public void Explode()
-  {
-    _kamikazeTrap.Explode();
-    _kamikazeTrapView.PlayExplodeAnimation();
-  }
+  public void StartWarning() => _view.PlayTargetAnimation();
 
-  public void StartWarning() => _kamikazeTrapView.PlayTargetAnimation();
-
-  public void StopWarning() => _kamikazeTrapView.StopTargetAnimation();
+  public void StopWarning() => _view.StopTargetAnimation();
 
   private void OnTriggerEnter2D(Collider2D other)
   {
-    if (other.gameObject.CompareTag("Player"))
-    {
-      other.GetComponent<IDamageable>()?.TakeDamage(_kamikazeTrap.Damage);
-    }
+    if (other.gameObject.CompareTag("Player")) other.GetComponent<IDamageable>()?.TakeDamage(_model.Damage);
   }
 }

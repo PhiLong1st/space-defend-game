@@ -85,6 +85,8 @@ public class SparkController : MonoBehaviour, IProjectileStrategy
   }
   #endregion
 
+
+
   #region Physics
   private void EnableDetector() => _collider.enabled = true;
 

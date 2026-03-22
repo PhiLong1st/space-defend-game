@@ -15,7 +15,6 @@ public class StateMachine
   public void Initialize(IState state)
   {
     CurrentState = state;
-    state.Enter();
   }
 
   public void ChangeState<T>() where T : IState
@@ -29,10 +28,15 @@ public class StateMachine
     }
   }
 
+  public void Start()
+  {
+    if (CurrentState == null) return;
+    CurrentState.Enter();
+  }
+
   public void Update()
   {
     if (CurrentState == null) return;
-    Debug.Log("Updating state: " + CurrentState.GetType().Name);
     CurrentState.Execute();
   }
 }

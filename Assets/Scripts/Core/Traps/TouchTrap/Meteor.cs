@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class Meteor : AbstractTouchTrap
+public class Meteor : MonoBehaviour, IDamageable
 {
   [Header("Wander Settings")]
   [SerializeField] private float _wanderCircleDistance = 2f;
   [SerializeField] private float _wanderCircleRadius = 1f;
   [SerializeField] private float _wanderAngleChange = 15f;
   [SerializeField] private float _maxSteeringForce = 0.5f;
+  [SerializeField] private float _maxSpeed = GameData.DefaultTrapMaxSpeed;
 
   private float _wanderAngle;
 
@@ -14,8 +15,26 @@ public class Meteor : AbstractTouchTrap
   private Vector2 _targetPointDebug;
 
   private bool _shouldWander = false;
+  private Rigidbody2D _rb;
 
-  void FixedUpdate()
+  private void Awake()
+  {
+    _rb = GetComponent<Rigidbody2D>();
+  }
+
+  private void OnEnable()
+  {
+    _shouldWander = false;
+
+    float pushX = Random.Range(GameData.MeteorPushXMin, GameData.MeteorPushXMax);
+    _rb.linearVelocity = new Vector2(pushX, 0f).normalized * _maxSpeed;
+
+    float randomScale = Random.Range(GameData.MeteorScaleMin, GameData.MeteorScaleMax);
+    transform.localScale = new Vector2(randomScale, randomScale);
+    _wanderAngle = Random.Range(0f, 360f);
+  }
+
+  private void FixedUpdate()
   {
     if (_shouldWander)
     {
@@ -55,19 +74,7 @@ public class Meteor : AbstractTouchTrap
     _targetPointDebug = targetPoint;
   }
 
-  public override void OnActivate()
-  {
-    _shouldWander = false;
-
-    float pushX = Random.Range(GameData.MeteorPushXMin, GameData.MeteorPushXMax);
-    _rb.linearVelocity = new Vector2(pushX, 0f).normalized * _maxSpeed;
-
-    float randomScale = Random.Range(GameData.MeteorScaleMin, GameData.MeteorScaleMax);
-    transform.localScale = new Vector2(randomScale, randomScale);
-    _wanderAngle = Random.Range(0f, 360f);
-  }
-
-  public override void OnDeactivate()
+  private void OnDisable()
   {
     _shouldWander = false;
 
@@ -80,10 +87,12 @@ public class Meteor : AbstractTouchTrap
 
   private void OnTriggerEnter2D(Collider2D other)
   {
-    if (other.CompareTag("WanderZone"))
-    {
-      _shouldWander = true;
-    }
+    if (other.CompareTag("WanderZone")) _shouldWander = true;
+  }
+
+  public void TakeDamage(int damage)
+  {
+    GetComponent<DamageFeedback>()?.PlayHitFlash(damage);
   }
 
   private void OnDrawGizmos()

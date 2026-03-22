@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2574631473141532864}
   - component: {fileID: 7478521565869449826}
   - component: {fileID: 3935152180315313236}
-  - component: {fileID: 6660832669802917310}
+  - component: {fileID: 8200654859319758306}
+  - component: {fileID: 8999084355514870911}
   m_Layer: 9
   m_Name: Meteor
   m_TagString: Obstacle
@@ -181,7 +182,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6660832669802917310
+--- !u!114 &8200654859319758306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,13 +191,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1311709943986456859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9574dc922675add409d0cb3140955108, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b11672349a2c9f459be355a68a23d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Meteor
-  _damage: 1
-  _lives: 1
   _maxSpeed: 2
-  wanderCircleDistance: 2
-  wanderCircleRadius: 1
-  wanderAngleChange: 15
-  maxSteeringForce: 0.5
+  _wanderCircleDistance: 2
+  _wanderCircleRadius: 1
+  _wanderAngleChange: 15
+  _maxSteeringForce: 0.5
+--- !u!114 &8999084355514870911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311709943986456859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ad5a08e50b54f479df664a83377a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFeedback
+  _flashMaterial: {fileID: 2100000, guid: a3e8c26a1d61e0f41869018dccf7dc25, type: 2}
+  _flashDuration: 0.1

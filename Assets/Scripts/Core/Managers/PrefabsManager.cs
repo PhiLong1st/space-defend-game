@@ -5,7 +5,6 @@ public enum PrefabType
 {
   KamikazeTrap,
   MeteorTrap,
-  WarningEffect,
   SparkProjectile,
 }
 
@@ -42,6 +41,7 @@ public class PrefabsManager : AbstractSingleton<PrefabsManager>
     }
 
     GameObject objectToSpawn = _pools[type].GetPooledObject();
+    objectToSpawn.SetActive(true);
     return objectToSpawn;
   }
 }

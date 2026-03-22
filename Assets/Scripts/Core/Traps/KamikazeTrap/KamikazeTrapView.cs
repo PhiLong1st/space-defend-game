@@ -3,6 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(DamageFeedback))]
 public class KamikazeTrapView : MonoBehaviour
 {
   private Animator _animator;
@@ -20,9 +21,9 @@ public class KamikazeTrapView : MonoBehaviour
 
   public void StopTargetAnimation() => _warningPrefab.SetActive(false);
 
-  public void PlayTakeDamageAnimation()
+  public void PlayTakeDamageAnimation(int damage)
   {
-    Debug.Log("Animation KamikazeTrap took damage!");
+    GetComponent<DamageFeedback>().PlayHitFlash(damage);
   }
 
   public void PlayExplodeAnimation()

@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipView
   _engine: {fileID: 6668214022714028043}
-  _explosionClip: {fileID: 7400000, guid: c34ec03438ebe1646944abf4b0d0ca21, type: 2}
   _shipViewLevelPrefabs:
   - {fileID: 3518090623429156044, guid: e4451e6c8dd313c4e8a8a478f01d8e0c, type: 3}
   - {fileID: 7827402917369795045, guid: 120c55be59d6f174d9d207ab2ce3017c, type: 3}
@@ -55,6 +54,7 @@ MonoBehaviour:
   - {fileID: 2726203359055969345, guid: 0857b990e5e8ceb429670aab30ecc1c8, type: 3}
   - {fileID: 7872470316738056771, guid: 74d66e81828ece344bc9ddca632fb694, type: 3}
   - {fileID: 6706360365498732421, guid: c70f3f55ecba736438cea3e78d58251c, type: 3}
+  _explosionClip: {fileID: 7400000, guid: c34ec03438ebe1646944abf4b0d0ca21, type: 2}
 --- !u!95 &3893245813244778805
 Animator:
   serializedVersion: 7
@@ -271,8 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633d3068af86bc743a6c28bccab48179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipController
-  _spaceshipConfig: {fileID: 11400000, guid: e3d114051541b144581ed690f1a7a5c4, type: 2}
-  _spaceshipView: {fileID: 8186035481929066880}
+  _config: {fileID: 11400000, guid: e3d114051541b144581ed690f1a7a5c4, type: 2}
   _attachPoint: {fileID: 3710884603367387562}
 --- !u!50 &1758117173360075154
 Rigidbody2D:

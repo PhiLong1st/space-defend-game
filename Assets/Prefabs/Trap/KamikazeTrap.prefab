@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1674629416078877686}
   - component: {fileID: 5966327962811005040}
   - component: {fileID: 2936718199299315161}
+  - component: {fileID: 6342916608969441875}
   m_Layer: 9
   m_Name: view
   m_TagString: Untagged
@@ -128,6 +129,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KamikazeTrapView
   _warningPrefab: {fileID: 1102705592567277715}
+--- !u!114 &6342916608969441875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72626903190290410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ad5a08e50b54f479df664a83377a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFeedback
+  _flashMaterial: {fileID: 2100000, guid: a3e8c26a1d61e0f41869018dccf7dc25, type: 2}
+  _flashDuration: 0.05
 --- !u!1 &1884208127204663299
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +152,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4294149915892093292}
-  - component: {fileID: 8638946383641605425}
   - component: {fileID: 8799412825960393606}
   - component: {fileID: 7022472049380169725}
   - component: {fileID: 6357202660463606841}
@@ -159,28 +173,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.23, y: 0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1148926130716148681}
   - {fileID: 8097988252654113121}
   - {fileID: 8447656555323707234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8638946383641605425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1884208127204663299}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f7dfe432778fbe4fb139e06a3a98b2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::KamikazeTrap
-  _damage: 50
-  _health: 50
-  _speed: 2
 --- !u!114 &8799412825960393606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,8 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc31e5bc6dce37848a8a2fa488a1151e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KamimazeTrapController
-  _kamikazeTrap: {fileID: 8638946383641605425}
-  _kamikazeTrapView: {fileID: 2936718199299315161}
+  _view: {fileID: 2936718199299315161}
 --- !u!50 &7022472049380169725
 Rigidbody2D:
   serializedVersion: 5

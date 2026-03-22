@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SparkConfig
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileConfig
   Speed: 5
-  Damage: 5
+  Damage: 15
   TimeCooldown: 2

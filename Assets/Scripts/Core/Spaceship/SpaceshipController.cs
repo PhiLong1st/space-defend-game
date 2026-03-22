@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
-public class SpaceshipController : MonoBehaviour, ISubject<Spaceship>
+public class SpaceshipController : MonoBehaviour, ISubject<Spaceship>, IDamageable
 {
   public static SpaceshipController Instance { get; private set; }
 
@@ -76,7 +76,7 @@ public class SpaceshipController : MonoBehaviour, ISubject<Spaceship>
     NotifyObservers(_model);
   }
 
-  public void HandleTakeDamage(int amount)
+  public void TakeDamage(int amount)
   {
     _model.TakeDamage(amount);
     NotifyObservers(_model);
